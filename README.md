@@ -247,7 +247,6 @@
     <header>
         <div class="header-container">
             <span class="badge">On-Demand Executive Leadership</span>
-            <h1>Ashish Mukherjee</h1>
             <div class="subtitle">Fractional CTO & Technical Advisor</div>
             <p class="tagline">Helping startups and scaling companies architect, build, and innovate with confidence and agility.</p>
         </div>
