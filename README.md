@@ -40,7 +40,7 @@
         .badge {
             background-color: rgba(56, 189, 248, 0.1);
             color: var(--accent-blue);
-            padding: 6px 16px;
+            padding: 6px 10px;
             border-radius: 50px;
             font-size: 0.85rem;
             text-transform: uppercase;
