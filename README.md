@@ -138,25 +138,6 @@
         .statement-banner span {
             color: var(--accent-blue);
         }
-        .audience-box {
-            background-color: rgba(56, 189, 248, 0.04);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 750px;
-            margin: 0 auto 40px auto;
-        }
-        .audience-box h3 {
-            color: var(--text-bright);
-            font-size: 1.15rem;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-        .audience-box p {
-            font-size: 1rem;
-            font-weight: 300;
-        }
         .why-section {
             background-color: #111827;
             padding: 30px;
@@ -248,7 +229,8 @@
         <div class="header-container">
             <span class="badge">On-Demand Executive Leadership</span>
             <div class="subtitle">Fractional CTO & Technical Advisor</div>
-            <p class="tagline">Helping startups and scaling companies architect, build, and innovate with confidence and agility.</p>
+            <p class="tagline">Helping startups and scaling companies architect, build, and innovate with confidence and agility. Get access to senior technology leadership without the commitment of a full-time hire.
+ </p>
         </div>
     </header>
     <main class="container">
@@ -277,10 +259,6 @@
                 <div class="service-title">Technical Due Diligence</div>
                 <p class="service-desc">Assess technology, architecture, and risk to support confident investment and acquisition decisions.</p>
             </div>
-        </div>
-        <div class="audience-box">
-            <h3>Ideal For Startups & Growth Companies</h3>
-            <p>Who need senior technology leadership without the commitment of a full-time hire.</p>
         </div>
         <div class="why-section">
             <h2>Why Partner With A Fractional CTO?</h2>
