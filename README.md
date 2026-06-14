@@ -229,7 +229,7 @@
         <div class="header-container">
             <span class="badge">On-Demand Executive Leadership</span>
             <div class="subtitle">Fractional CTO & Technical Advisor</div>
-            <p class="tagline">Helping startups and scaling companies architect, build, and innovate with confidence and agility. Get access to senior technology leadership without the commitment of a full-time hire.
+            <p class="tagline">Ideal for growing companies who need access to senior technology leadership without the commitment of a full-time hire.
  </p>
         </div>
     </header>
