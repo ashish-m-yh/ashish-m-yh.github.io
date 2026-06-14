@@ -280,9 +280,6 @@
                 <p class="service-desc">Assess technology, architecture, and risk to support confident investment and acquisition decisions.</p>
             </div>
         </div>
-        <div class="statement-banner">
-            <p>STRATEGY TODAY. <span>STRONGER TOMORROW.</span></p>
-        </div>
         <div class="audience-box">
             <h3>Ideal For Startups & Growth Companies</h3>
             <p>Who need senior technology leadership without the commitment of a full-time hire.</p>
