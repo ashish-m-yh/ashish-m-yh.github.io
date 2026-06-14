@@ -47,7 +47,7 @@
             letter-spacing: 2px;
             font-weight: 700;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid rgba(56, 189, 248, 0.2);
         }
         header h1 {
