@@ -1,22 +1,20 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PostgreSQL Database Consulting | Ashish Mukherjee</title>
+    <title>Ashish Mukherjee | Fractional CTO & Technical Advisor</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --bg-accent-light: #f1f5f9;
-            --text-dark: #0f172a;
-            --text-muted: #475569;
-            --text-light: #94a3b8;
-            --primary: #1e293b;
-            --secondary: #334155;
-            --accent: #0284c7;
-            --accent-hover: #38bdf8;
-            --border-color: #e2e8f0;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-light: #f8fafc;
+            --accent-blue: #38bdf8;
+            --accent-green: #4ade80;
+            --text-main: #cbd5e1;
+            --text-bright: #ffffff;
+            --text-dark: #334155;
+            --border-color: #334155;
         }
 
         * {
@@ -27,135 +25,180 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-muted);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6;
-            padding-bottom: 60px;
         }
 
-        /* Hero Banner Style */
+        /* Hero Header Section */
         header {
-            background-color: var(--primary);
-            color: #ffffff;
-            padding: 60px 20px;
+            padding: 60px 20px 40px 20px;
             text-align: center;
-            border-bottom: 5px solid var(--accent);
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
         }
 
         .header-container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
+        }
+
+        .badge {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         header h1 {
-            font-size: 2.5rem;
-            color: #f8fafc;
-            line-height: 1.2;
+            font-size: 2.8rem;
+            color: var(--text-bright);
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
         }
 
-        header p {
-            font-size: 1.3rem;
-            color: #cbd5e1;
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            max-width: 600px;
+            margin: 0 auto;
             font-weight: 300;
-            max-width: 750px;
-            margin: 0 auto;
         }
 
-        /* Main Grid & Content Constraints */
+        /* Main Structural Layout */
         .container {
-            max-width: 940px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .intro-box {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 5px solid var(--accent);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            margin-bottom: 45px;
+            padding: 50px 20px;
         }
 
         h2 {
-            font-size: 1.6rem;
-            color: var(--text-dark);
+            font-size: 1.4rem;
+            color: var(--text-bright);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        /* Specialties Section Grid */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        @media (max-width: 600px) {
-            .grid-cards {
-                grid-template-columns: 1fr;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        .card {
-            background: var(--bg-card);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-
-        .card-title {
-            font-weight: 700;
-            color: #0369a1;
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-        }
-
-        .card-desc {
-            font-size: 1rem;
-            color: var(--text-muted);
-        }
-
-        /* Focus Banner Row */
-        .focus-banner {
-            background-color: var(--secondary);
-            color: #f8fafc;
-            padding: 18px 25px;
-            border-radius: 8px;
-            margin-bottom: 45px;
-            font-size: 1.15rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 30px;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
 
-        .focus-banner strong {
-            color: var(--accent-hover);
+        h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
         }
 
-        /* Partnership Section Grid */
+        /* What I Do Section Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            border-color: #475569;
+        }
+
+        .service-title {
+            color: var(--text-bright);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        /* Core Focus Mid-Banner */
+        .statement-banner {
+            text-align: center;
+            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 60px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .statement-banner p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-bright);
+        }
+
+        .statement-banner span {
+            color: var(--accent-blue);
+        }
+
+        /* Target Audience / Audience Section */
+        .audience-box {
+            background-color: rgba(56, 189, 248, 0.04);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 60px auto;
+        }
+
+        .audience-box h3 {
+            color: var(--text-bright);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .audience-box p {
+            font-size: 1.05rem;
+            font-weight: 300;
+        }
+
+        /* Why Fractional CTO Layout List */
+        .why-section {
+            background-color: #111827;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+
         .why-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 20px;
-            margin-bottom: 50px;
+            margin-top: 20px;
         }
 
         @media (max-width: 600px) {
@@ -164,91 +207,81 @@
             }
         }
 
-        .why-card {
-            background: var(--bg-accent-light);
-            padding: 20px 25px;
-            border-radius: 8px;
-            border-left: 4px solid var(--text-light);
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            font-size: 1.05rem;
         }
 
-        .why-title {
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.15rem;
-            margin-bottom: 6px;
+        .why-icon {
+            color: var(--accent-green);
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1;
         }
 
-        /* CTA & Footer Contact Widget */
-        .cta-container {
-            background-color: var(--text-dark);
-            color: #ffffff;
+        /* Footer Engagement Dashboard Panel */
+        .cta-panel {
+            background-color: #020617;
             border-radius: 8px;
             padding: 40px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-header {
-            text-align: center;
-            margin-bottom: 35px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         .cta-title {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 8px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--text-bright);
             font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
         }
 
-        .cta-subtitle {
-            font-size: 1.6rem;
-            color: var(--accent-hover);
-            font-weight: 700;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            border-top: 1px solid #334155;
-            padding-top: 30px;
-        }
-
-        @media (max-width: 650px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        .contact-item {
+        .contact-flex {
             display: flex;
-            flex-direction: column;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .contact-channel {
+            text-align: center;
+            min-width: 200px;
         }
 
         .contact-label {
-            font-size: 0.85rem;
-            color: var(--text-light);
+            font-size: 0.8rem;
+            color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            font-weight: 700;
         }
 
-        .contact-value {
-            font-size: 1.1rem;
-            color: #f1f5f9;
-        }
-
-        .contact-value a {
-            color: var(--accent-hover);
+        .contact-link {
+            font-size: 1.05rem;
+            color: var(--text-bright);
             text-decoration: none;
             transition: color 0.15s;
         }
 
-        .contact-value a:hover {
-            color: #ffffff;
-            text-decoration: underline;
+        .contact-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .footer-tags {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 35px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 25px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #64748b;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -256,77 +289,105 @@
 
     <header>
         <div class="header-container">
-            <h1>Is Your PostgreSQL Database Keeping You Up at Night?</h1>
-            <p>Slow queries? Downtime risks? Scaling pains? I fix Postgres so you can build your business.</p>
+            <span class="badge">On-Demand Executive Leadership</span>
+            <h1>Ashish Mukherjee</h1>
+            <div class="subtitle">Fractional CTO & Technical Advisor</div>
+            <p class="tagline">Helping startups and scaling companies architect, build, and innovate with confidence and agility.</p>
         </div>
     </header>
 
     <main class="container">
-        <div class="intro-box">
-            I specialize in tuning, securing, and scaling PostgreSQL databases for high-growth startups and enterprise architectures. Whether you run on-premise, AWS RDS, GCP Cloud SQL, or Azure, I ensure peak operational health.
-        </div>
 
-        <h2>My Core Specialties</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <div class="card-title">Performance Tuning</div>
-                <p class="card-desc">Eliminate performance bottlenecks, optimize slow queries, and precisely configure postgresql.conf for maximum hardware utilization.</p>
+        <h2>What I Do</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-title">Technology Strategy</div>
+                <p class="service-desc">Align technology with business goals and drive long-term impact.</p>
             </div>
-            <div class="card">
-                <div class="card-title">High Availability</div>
-                <p class="card-desc">Design robust replication models, seamless automated failover clustering, and foolproof write-ahead log (WAL) backup/restore strategies.</p>
+            <div class="service-card">
+                <div class="service-title">Architecture & Scalability</div>
+                <p class="service-desc">Design resilient, secure, and scalable architectures for complex products and platforms.</p>
             </div>
-            <div class="card">
-                <div class="card-title">Migrations & Upgrades</div>
-                <p class="card-desc">Execute seamless, near-zero-downtime upgrades to modern Postgres versions or smooth structural transitions from legacy Oracle or MySQL.</p>
+            <div class="service-card">
+                <div class="service-title">Team Leadership</div>
+                <p class="service-desc">Build, mentor, and lead high-performing engineering teams.</p>
             </div>
-            <div class="card">
-                <div class="card-title">Security & Auditing</div>
-                <p class="card-desc">Identify hidden indexing gaps, resolve connection pooling constraints (PgBouncer), and secure access controls before production impacts.</p>
+            <div class="service-card">
+                <div class="service-title">Risk & Security</div>
+                <p class="service-desc">Identify and mitigate technical risks. Strengthen security, compliance, and operational resilience.</p>
             </div>
-        </div>
-
-        <div class="focus-banner">
-            <strong>100% Postgres Focused:</strong> I do not generalize. I live and breathe PostgreSQL architecture daily.
-        </div>
-
-        <h2>Why Partner With Me?</h2>
-        <div class="why-grid">
-            <div class="why-card">
-                <div class="why-title">Proven Track Record</div>
-                <p class="card-desc">Trusted by heavily data-driven engineering and architecture squads globally.</p>
+            <div class="service-card">
+                <div class="service-title">AI-Enable Your Business</div>
+                <p class="service-desc">Unlock AI-driven opportunities that improve efficiency, innovation, and competitive advantage.</p>
             </div>
-            <div class="why-card">
-                <div class="why-title">Direct Expert Access</div>
-                <p class="card-desc">You get direct, uncompromised access to a veteran engineer—no account managers or junior hand-offs.</p>
+            <div class="service-card">
+                <div class="service-title">Technical Due Diligence</div>
+                <p class="service-desc">Assess technology, architecture, and risk to support confident investment and acquisition decisions.</p>
             </div>
         </div>
 
-        <section class="cta-container">
-            <div class="cta-header">
-                <div class="cta-title">Don't Wait For A Critical Production Crash</div>
-                <div class="cta-subtitle">Get a Free 30-Minute Deep-Dive Database Assessment</div>
+        <div class="statement-banner">
+            <p>STRATEGY TODAY. <span>STRONGER TOMORROW.</span></p>
+        </div>
+
+        <div class="audience-box">
+            <h3>Ideal For Startups & Growth Companies</h3>
+            <p>Who need senior technology leadership without the commitment of a full-time hire.</p>
+        </div>
+
+        <div class="why-section">
+            <h2>Why Partner With A Fractional CTO?</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <span class="why-icon">&#10003;</span>
+                    Senior-level expertise at a fraction of the cost
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">&#10003;</span>
+                    Flexible engagement that fits your stage and needs
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">&#10003;</span>
+                    Objective perspective focused on outcomes
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">&#10003;</span>
+                    Accelerate innovation with modern architecture & emerging tech
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">&#10003;</span>
+                    Strengthen risk management, security, and compliance
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">&#10003;</span>
+                    Increased investor confidence and valuation
+                </div>
             </div>
+        </div>
+
+        <section class="cta-panel">
+            <div class="cta-title">Let's Build The Future.</div>
             
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <span class="contact-label">Explore My GitHub Tools</span>
-                    <span class="contact-value"><a href="https://github.com/ashish-m-yh/pgsql-tools" target="_blank" rel="noopener">https://github.com/ashish-m-yh/pgsql-tools</a></span>
+            <div class="contact-flex">
+                <div class="contact-channel">
+                    <div class="contact-label">Email Directly</div>
+                    <a href="mailto:ashishmukherjee@gmail.com" class="contact-link">ashishmukherjee@gmail.com</a>
                 </div>
-                <div class="contact-item">
-                    <span class="contact-label">Connect On LinkedIn</span>
-                    <span class="contact-value"><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener">https://www.linkedin.com/in/ashishindia/</a></span>
+                <div class="contact-channel">
+                    <div class="contact-label">LinkedIn Connection</div>
+                    <a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener" class="contact-link">https://www.linkedin.com/in/ashishindia/</a>
                 </div>
-                <div class="contact-item">
-                    <span class="contact-label">Email Me Directly</span>
-                    <span class="contact-value"><a href="mailto:ashishmukherjee@gmail.com">ashishmukherjee@gmail.com</a></span>
+                <div class="contact-channel">
+                    <div class="contact-label">WhatsApp</div>
+                    <span class="contact-link">+91-8800199037</span>
                 </div>
-                <div class="contact-item">
-                    <span class="contact-label">WhatsApp</span>
-                    <span class="contact-value">+91-8800199037</span>
-                </div>
+            </div>
+
+            <div class="footer-tags">
+                <span>Innovation</span> &bull; <span>Risk Management</span> &bull; <span>Security</span>
             </div>
         </section>
+
     </main>
 
 </body>
