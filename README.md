@@ -229,7 +229,7 @@
         <div class="header-container">
             <span class="badge">On-Demand Executive Leadership</span>
             <div class="subtitle">Fractional CTO & Technical Advisor</div>
-            <p class="tagline">On-demand CTO leadership for growth-stage startups.</p>
+            <p class="tagline">Ideal for startups and growth-stage companies</p>
         </div>
     </header>
     <main class="container">
