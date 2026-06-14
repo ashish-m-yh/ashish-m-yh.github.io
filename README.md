@@ -289,7 +289,6 @@
             </div>
         </div>
         <section class="cta-panel">
-            <div class="cta-title">Let's Build The Future.</div>
             <div class="contact-flex">
                 <div class="contact-channel">
                     <div class="contact-label">Email Directly</div>
