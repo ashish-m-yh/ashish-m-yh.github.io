@@ -252,7 +252,6 @@
         </div>
     </header>
     <main class="container">
-        <h2>What I Do</h2>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-title">Technology Strategy</div>
