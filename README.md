@@ -227,7 +227,7 @@
 <body>
     <header>
         <div class="header-container">
-            <div class="subtitle">Fractional CTO & Technical Advisor for Startups & Growth-stage companies</div>
+            <div class="subtitle">Fractional CTO / Tech Advisor for Startups & Growth-stage Companies</div>
             <p>Technical leader with more than 25 years across multiple startups and giants like Yahoo and Monster</p>
         </div>
     </header>
