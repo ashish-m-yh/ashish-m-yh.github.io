@@ -3,253 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PgSQL Consulting | Expert PostgreSQL Solutions</title>
+    <title>PostgreSQL Database Consulting | Ashish Mukherjee</title>
     <style>
-        /* --- RESET & BASE STYLES --- */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-accent-light: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --text-light: #94a3b8;
+            --primary: #1e293b;
+            --secondary: #334155;
+            --accent: #0284c7;
+            --accent-hover: #38bdf8;
+            --border-color: #e2e8f0;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-muted);
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            padding-bottom: 60px;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
+        /* Hero Banner Style */
+        header {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        .header-container {
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        /* --- HEADER & NAVIGATION --- */
-        header {
-            background-color: #002244; /* PgSQL Dark Blue */
-            color: #fff;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Flexbox for Navbar alignment on PC */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #336791; /* PgSQL Light Blue */
-            text-decoration: none;
-        }
-        .logo span { color: #fff; }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #336791;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(135deg, #002244 0%, #336791 100%);
-            color: #fff;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #ff6f61;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #e65c50;
-        }
-
-        /* --- SERVICES SECTION (CSS GRID) --- */
-        .services {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            color: #002244;
-        }
-
-        /* CSS Grid automatically creates columns on desktop */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
-            border-top: 4px solid #336791;
-        }
-
-        .service-card h3 {
+        header h1 {
+            font-size: 2.5rem;
+            color: #f8fafc;
+            line-height: 1.2;
+            font-weight: 800;
             margin-bottom: 15px;
-            color: #002244;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: #111;
-            color: #ccc;
+        header p {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            font-weight: 300;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Main Grid & Content Constraints */
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .intro-box {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 45px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        /* Specialties Section Grid */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-cards {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: #0369a1;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* Focus Banner Row */
+        .focus-banner {
+            background-color: var(--secondary);
+            color: #f8fafc;
+            padding: 18px 25px;
+            border-radius: 8px;
+            margin-bottom: 45px;
+            font-size: 1.15rem;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            font-size: 14px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
+        .focus-banner strong {
+            color: var(--accent-hover);
+        }
 
-        /* ==========================================================================
-           MEDIA QUERIES: This handles the responsiveness for Tablets and Mobile
-           ========================================================================== */
-        
-        /* For screens 768px wide or less (Mobile/Tablets) */
-        @media screen and (max-width: 768px) {
-            
-            /* Stack navbar items vertically */
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
+        /* Partnership Section Grid */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
 
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap; /* Allows wrap if links are too many */
-                gap: 15px;
-            }
-
-            /* Adjust text scaling so it doesn't overflow mobile screens */
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
+        @media (max-width: 600px) {
+            .why-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* For ultra-small screens (under 480px) */
-        @media screen and (max-width: 480px) {
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
+        .why-card {
+            background: var(--bg-accent-light);
+            padding: 20px 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--text-light);
+        }
+
+        .why-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        /* CTA & Footer Contact Widget */
+        .cta-container {
+            background-color: var(--text-dark);
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .cta-title {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .cta-subtitle {
+            font-size: 1.6rem;
+            color: var(--accent-hover);
+            font-weight: 700;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+        }
+
+        @media (max-width: 650px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-            
-            .hero {
-                padding: 50px 0;
-            }
-            
-            .btn {
-                width: 100%; /* Make the button full-width on tiny screens */
-                text-align: center;
-            }
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            color: #f1f5f9;
+        }
+
+        .contact-value a {
+            color: var(--accent-hover);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .contact-value a:hover {
+            color: #ffffff;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container navbar">
-            <a href="#" class="logo">PgSQL<span>Consulting</span></a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+        <div class="header-container">
+            <h1>Is Your PostgreSQL Database Keeping You Up at Night?</h1>
+            <p>Slow queries? Downtime risks? Scaling pains? I fix Postgres so you can build your business.</p>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Expert PostgreSQL Performance & Scaling</h1>
-            <p>We optimize your databases, eliminate bottlenecks, and ensure 24/7 high availability for enterprise PostgreSQL clusters.</p>
-            <a href="#contact" class="btn">Get a Free Audit</a>
+    <main class="container">
+        <div class="intro-box">
+            I specialize in tuning, securing, and scaling PostgreSQL databases for high-growth startups and enterprise architectures. Whether you run on-premise, AWS RDS, GCP Cloud SQL, or Azure, I ensure peak operational health.
         </div>
-    </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Consulting Services</h2>
-            <div class="services-grid">
-                
-                <div class="service-card">
-                    <h3>Performance Tuning</h3>
-                    <p>Optimizing slow queries, memory parameters, indexing strategies, and autovacuum configurations.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>High Availability</h3>
-                    <p>Designing seamless failover and replication architectures using Patroni, pgBackRest, and PgBouncer.</p>
-                </div>
-
-                <div class="service-card">
-                    <h3>Cloud Migrations</h3>
-                    <p>Safely migrating on-premise infrastructure to AWS RDS, Aurora, Azure PostgreSQL, or GCP Cloud SQL.</p>
-                </div>
-
+        <h2>My Core Specialties</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-title">Performance Tuning</div>
+                <p class="card-desc">Eliminate performance bottlenecks, optimize slow queries, and precisely configure postgresql.conf for maximum hardware utilization.</p>
+            </div>
+            <div class="card">
+                <div class="card-title">High Availability</div>
+                <p class="card-desc">Design robust replication models, seamless automated failover clustering, and foolproof write-ahead log (WAL) backup/restore strategies.</p>
+            </div>
+            <div class="card">
+                <div class="card-title">Migrations & Upgrades</div>
+                <p class="card-desc">Execute seamless, near-zero-downtime upgrades to modern Postgres versions or smooth structural transitions from legacy Oracle or MySQL.</p>
+            </div>
+            <div class="card">
+                <div class="card-title">Security & Auditing</div>
+                <p class="card-desc">Identify hidden indexing gaps, resolve connection pooling constraints (PgBouncer), and secure access controls before production impacts.</p>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 PgSQL Consulting. All rights reserved.</p>
+        <div class="focus-banner">
+            <strong>100% Postgres Focused:</strong> I do not generalize. I live and breathe PostgreSQL architecture daily.
         </div>
-    </footer>
 
+        <h2>Why Partner With Me?</h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-title">Proven Track Record</div>
+                <p class="card-desc">Trusted by heavily data-driven engineering and architecture squads globally.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-title">Direct Expert Access</div>
+                <p class="card-desc">You get direct, uncompromised access to a veteran engineer—no account managers or junior hand-offs.</p>
+            </div>
+        </div>
+
+        <section class="cta-container">
+            <div class="cta-header">
+                <div class="cta-title">Don't Wait For A Critical Production Crash</div>
+                <div class="cta-subtitle">Get a Free 30-Minute Deep-Dive Database Assessment</div>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-label">Explore My GitHub Tools</span>
+                    <span class="contact-value"><a href="https://github.com/ashish-m-yh/pgsql-tools" target="_blank" rel="noopener">https://github.com/ashish-m-yh/pgsql-tools</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Connect On LinkedIn</span>
+                    <span class="contact-value"><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener">https://www.linkedin.com/in/ashishindia/</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Email Me Directly</span>
+                    <span class="contact-value"><a href="mailto:ashishmukherjee@gmail.com">ashishmukherjee@gmail.com</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">WhatsApp</span>
+                    <span class="contact-value">+91-8800199037</span>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
