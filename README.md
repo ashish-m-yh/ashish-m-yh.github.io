@@ -227,8 +227,8 @@
 <body>
     <header>
         <div class="header-container">
-            <span class="badge">On-Demand Executive Leadership</span>
             <div class="subtitle">Fractional CTO & Technical Advisor</div>
+            <p>Ashish has more than 25 years experience in technical leadership and consulting across multiple startups and organizations like Yahoo and Monster</p>
             <p class="tagline">Ideal for startups and growth-stage companies</p>
         </div>
     </header>
