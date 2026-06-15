@@ -225,7 +225,7 @@
     </style>
 </head>
 <body>
-<p><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener" class="contact-link">https://www.linkedin.com/in/ashishindia/</a></p>
+<p align="center"><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener" class="contact-link">https://www.linkedin.com/in/ashishindia/</a></p>
     <header>
         <div class="header-container">
             <div class="subtitle">Fractional CTO / Tech Advisor for Startups & Growth-stage Companies</div>
