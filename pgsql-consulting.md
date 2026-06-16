@@ -6853,7 +6853,6 @@ header {
 	color: #ffffff;
 	padding: 60px 20px;
 	text-align: center;
-	border-bottom: 5px solid var(--accent);
 }
 
 .header-container {
