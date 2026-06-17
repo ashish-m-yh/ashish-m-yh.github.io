@@ -318,14 +318,7 @@
             <span class="contact-link">+91-8800199037</span>
           </div>
         </div>
-        <div class="footer-tags">
-          <span>Innovation</span>
-          <span class="separator">&bull;</span>
-          <span>Risk Management</span>
-          <span class="separator">&bull;</span>
-          <span>Security</span>
-        </div>
-      </section>
+       </section>
       <p/>
       <section class="why-section">
         <h2>Why Partner With A Fractional CTO?</h2>
