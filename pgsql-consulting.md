@@ -7156,8 +7156,12 @@ h2 {
             <p>Slow queries? Downtime risks? Scaling pains? I fix Postgres so you can build your business.</p>
         </div>
 	</header>
-	
-		 <section class="cta-container">
+
+    <main class="container">
+        <div class="intro-box">
+            I specialize in tuning, securing, and scaling PostgreSQL databases for high-growth startups and enterprise architectures. Whether you run on-premise, AWS RDS, GCP Cloud SQL, or Azure, I ensure peak operational health. More than 25 years experience working with pgsql and mysql databases in large enterprise environments and high-growth startups. <span class="contact-value"><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener">https://www.linkedin.com/in/ashishindia/</a></span>
+        </div>
+ <section class="cta-container">
             <div class="cta-header">
                 <div class="cta-title">Don't Wait For A Critical Production Crash</div>
                 <div class="cta-subtitle">Get a Free 30-Minute Deep-Dive Database Assessment</div>
@@ -7182,12 +7186,6 @@ h2 {
                 </div>
             </div>
         </section>
-
-
-    <main class="container">
-        <div class="intro-box">
-            I specialize in tuning, securing, and scaling PostgreSQL databases for high-growth startups and enterprise architectures. Whether you run on-premise, AWS RDS, GCP Cloud SQL, or Azure, I ensure peak operational health. More than 25 years experience working with pgsql and mysql databases in large enterprise environments and high-growth startups. <span class="contact-value"><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener">https://www.linkedin.com/in/ashishindia/</a></span>
-        </div>
 
         <h2>My Core Specialties</h2>
         <div class="grid-cards">
