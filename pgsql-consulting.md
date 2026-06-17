@@ -7155,6 +7155,32 @@ h2 {
             <h1>Is Your PostgreSQL Database Keeping You Up at Night?</h1>
             <p>Slow queries? Downtime risks? Scaling pains? I fix Postgres so you can build your business.</p>
         </div>
+		 <section class="cta-container">
+            <div class="cta-header">
+                <div class="cta-title">Don't Wait For A Critical Production Crash</div>
+                <div class="cta-subtitle">Get a Free 30-Minute Deep-Dive Database Assessment</div>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-label">Explore My GitHub Tools</span>
+                    <span class="contact-value"><a href="https://github.com/ashish-m-yh/pgsql-tools" target="_blank" rel="noopener">https://github.com/ashish-m-yh/pgsql-tools</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Connect On LinkedIn</span>
+                    <span class="contact-value"><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener">https://www.linkedin.com/in/ashishindia/</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Email Me Directly</span>
+                    <span class="contact-value"><a href="mailto:ashishmukherjee@gmail.com">ashishmukherjee@gmail.com</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">WhatsApp</span>
+                    <span class="contact-value">+91-8800199037</span>
+                </div>
+            </div>
+        </section>
+
     </header>
 
     <main class="container">
@@ -7198,31 +7224,6 @@ h2 {
             </div>
         </div>
 
-        <section class="cta-container">
-            <div class="cta-header">
-                <div class="cta-title">Don't Wait For A Critical Production Crash</div>
-                <div class="cta-subtitle">Get a Free 30-Minute Deep-Dive Database Assessment</div>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <span class="contact-label">Explore My GitHub Tools</span>
-                    <span class="contact-value"><a href="https://github.com/ashish-m-yh/pgsql-tools" target="_blank" rel="noopener">https://github.com/ashish-m-yh/pgsql-tools</a></span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-label">Connect On LinkedIn</span>
-                    <span class="contact-value"><a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener">https://www.linkedin.com/in/ashishindia/</a></span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-label">Email Me Directly</span>
-                    <span class="contact-value"><a href="mailto:ashishmukherjee@gmail.com">ashishmukherjee@gmail.com</a></span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-label">WhatsApp</span>
-                    <span class="contact-value">+91-8800199037</span>
-                </div>
-            </div>
-        </section>
-    </main>
+           </main>
 </body>
 </html>
