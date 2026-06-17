@@ -270,7 +270,7 @@
     <header>
       <div class="header-container">
         <div class="subtitle">Fractional CTO / Tech Advisor for Startups &amp; Growth-stage Companies</div>
-        <p class="tagline">Technical leader with more than 25 years across multiple startups and giants like Yahoo and Monster</p>
+        <p class="tagline">Technical leader with 25+ years across multiple startups and giants like Yahoo, Monster</p>
         <a href="https://www.linkedin.com/in/ashishindia/" target="_blank" rel="noopener" class="contact-link">linkedin.com/in/ashishindia</a>
       </div>
     </header>
