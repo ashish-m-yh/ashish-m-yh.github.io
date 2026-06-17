@@ -7155,6 +7155,8 @@ h2 {
             <h1>Is Your PostgreSQL Database Keeping You Up at Night?</h1>
             <p>Slow queries? Downtime risks? Scaling pains? I fix Postgres so you can build your business.</p>
         </div>
+	</header>
+	
 		 <section class="cta-container">
             <div class="cta-header">
                 <div class="cta-title">Don't Wait For A Critical Production Crash</div>
@@ -7181,7 +7183,6 @@ h2 {
             </div>
         </section>
 
-    </header>
 
     <main class="container">
         <div class="intro-box">
