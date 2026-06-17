@@ -269,7 +269,6 @@
   <body>
     <header>
       <div class="header-container">
-        <h1>Ashish Mukherjee</h1>
         <div class="subtitle">Fractional CTO / Tech Advisor for Startups &amp; Growth-stage Companies</div>
         <p class="tagline">Technical leader with more than 25 years across multiple startups and giants like Yahoo and Monster</p>
       </div>
