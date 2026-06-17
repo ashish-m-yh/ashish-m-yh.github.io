@@ -302,18 +302,6 @@
         </div>
       </section>
 
-      <section class="why-section">
-        <h2>Why Partner With A Fractional CTO?</h2>
-        <div class="why-grid">
-          <div class="why-item"><span class="why-icon">&#10003;</span><span>Senior-level expertise at a fraction of the cost</span></div>
-          <div class="why-item"><span class="why-icon">&#10003;</span><span>Flexible engagement that fits your stage and needs</span></div>
-          <div class="why-item"><span class="why-icon">&#10003;</span><span>Objective perspective focused on outcomes</span></div>
-          <div class="why-item"><span class="why-icon">&#10003;</span><span>Accelerate innovation with modern architecture &amp; emerging tech</span></div>
-          <div class="why-item"><span class="why-icon">&#10003;</span><span>Strengthen risk management, security, and compliance</span></div>
-          <div class="why-item"><span class="why-icon">&#10003;</span><span>Increased investor confidence and valuation</span></div>
-        </div>
-      </section>
-
       <section class="cta-panel" aria-label="Contact">
         <div class="contact-flex">
           <div class="contact-channel">
@@ -337,6 +325,18 @@
           <span>Security</span>
         </div>
       </section>
+      <section class="why-section">
+        <h2>Why Partner With A Fractional CTO?</h2>
+        <div class="why-grid">
+          <div class="why-item"><span class="why-icon">&#10003;</span><span>Senior-level expertise at a fraction of the cost</span></div>
+          <div class="why-item"><span class="why-icon">&#10003;</span><span>Flexible engagement that fits your stage and needs</span></div>
+          <div class="why-item"><span class="why-icon">&#10003;</span><span>Objective perspective focused on outcomes</span></div>
+          <div class="why-item"><span class="why-icon">&#10003;</span><span>Accelerate innovation with modern architecture &amp; emerging tech</span></div>
+          <div class="why-item"><span class="why-icon">&#10003;</span><span>Strengthen risk management, security, and compliance</span></div>
+          <div class="why-item"><span class="why-icon">&#10003;</span><span>Increased investor confidence and valuation</span></div>
+        </div>
+      </section>
+
     </main>
   </body>
 </html>
