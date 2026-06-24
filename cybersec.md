@@ -54,6 +54,7 @@ h1 {
   margin: 0 0 20px;
   color: white;
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .hero-text {
@@ -96,6 +97,10 @@ h1 {
   margin-top: 30px;
   color: #94a3b8;
   font-size: 0.9rem;
+}
+
+main {
+  margin-top: 30px;
 }
 
 section {
@@ -160,7 +165,7 @@ h2 {
 
 .bottom-cta {
   text-align: center;
-  padding: 20px 30px;
+  padding: 40px 30px;
   background: #020617;
   border: 1px solid rgba(56, 189, 248, 0.15);
   border-radius: 12px;
@@ -169,10 +174,11 @@ h2 {
 .bottom-cta h3 {
   color: white;
   margin-bottom: 15px;
+  font-size: 1.5rem;
 }
 
 footer {
-  padding: 30px;
+  padding: 40px 30px;
   text-align: center;
   color: #64748b;
   font-size: 0.9rem;
@@ -186,7 +192,7 @@ footer {
   <div class="container">
     <div class="subtitle">FinGuard — Security Audits for Indian Fintechs</div>
     
-    <h2>Secure Your Fintech Before Compliance Becomes a Risk</h1>
+    <h1>Secure Your Fintech Before Compliance Becomes a Risk</h1>
     
     <div class="hero-text">
       Rigorous audits for RBI, NPCI, CERT-In, PCI-DSS, SOC 2, ISO 27001, &amp; DPDP compliance.  
@@ -262,7 +268,7 @@ footer {
 </main>
 
 <footer>
-  © 2026 FinGuard Security
+  &copy; 2026 FinGuard Security
 </footer>
 
 </body>
