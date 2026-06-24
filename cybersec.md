@@ -79,8 +79,8 @@ h1 {
 }
 
 .btn-primary {
-  background: var(--accent-blue);
-  color: #0f172a;
+  background: #8b5cf6;
+  color: white;
 }
 
 .btn-primary:hover {
