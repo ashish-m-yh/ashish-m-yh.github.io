@@ -78,6 +78,15 @@ h1 {
   transition: 0.2s ease;
 }
 
+.btn-primary {
+  background: var(--accent-blue);
+  color: #0f172a;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
 .btn-secondary {
   border: 1px solid var(--border-color);
   color: white;
@@ -185,7 +194,7 @@ footer {
     </div>
 
     <div class="cta-buttons">
-      <a href="mailto:hello@finguard.in" class="btn">Book a Security Review</a>
+      <a href="mailto:hello@finguard.in" class="btn btn-primary">Book a Security Review</a>
     </div>
   </div>
 </header>
@@ -245,7 +254,7 @@ footer {
     <p>Whether you're preparing for RBI review, SOC 2, or PCI-DSS, we help you close security gaps quickly.</p>
 
     <div class="cta-buttons">
-      <a href="mailto:hello@finguard.in" class="btn">Talk to an Auditor</a>
+      <a href="mailto:hello@finguard.in" class="btn btn-primary">Talk to an Auditor</a>
     </div>
   </div>
 </section>
