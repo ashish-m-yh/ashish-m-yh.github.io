@@ -129,7 +129,7 @@ footer {
 <nav>
   <div class="container nav-wrap">
     <div class="logo">FinGuard</div>
-    <a href="mailto:hello@finguard.in" class="nav-cta">Contact</a>
+    <a href="mailto:ashishmukherjee@gmail.com" class="nav-cta">Contact</a>
   </div>
 </nav>
 
@@ -141,7 +141,7 @@ footer {
       Rigorous audits for RBI, NPCI, CERT-In, PCI-DSS, SOC 2, ISO 27001, and DPDP compliance.
     </div>
     <div class="cta-buttons">
-      <a href="mailto:hello@finguard.in" class="btn btn-primary">Book a Security Review</a>
+      <a href="mailto:ashishmukherjee@gmail.com" class="btn btn-primary">Book a Security Review</a>
       <a href="#services" class="btn btn-secondary">View Services</a>
     </div>
   </div>
