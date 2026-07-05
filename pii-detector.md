@@ -1,3 +1,4 @@
+{% seo title=false %}
 <html>
 <head>
 <meta charset='utf-8'>
