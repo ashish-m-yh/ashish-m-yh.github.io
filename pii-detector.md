@@ -1,396 +1,477 @@
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>PII Detector API</title>
-
 <style>
-{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+body{margin:0;font:15px Arial;background:#0b1120;color:#eef2ff}
+header{display:flex;justify-content:space-between;padding:12px 6%;background:#111827;border-bottom:1px solid #334155;position:sticky;top:0;z-index:10}
+a{color:#93c5fd;text-decoration:none;margin-left:16px}
+h1{font-size:38px;margin-top:0}
+h2{margin-top:0}
+.lead{color:#9fb0c7;font-size:16px;line-height:1.5}
+.btn{display:inline-block;background:#2563eb;color:#fff;padding:10px 18px;border-radius:7px;margin:16px 8px 0 0;text-decoration:none;cursor:pointer;border:none;font-size:15px}
+.btn:hover{background:#1d4ed8}
+.card{background:#172033;border:1px solid #334155;border-radius:10px;padding:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.badge{display:inline-block;background:#1e293b;border:1px solid #334155;padding:6px 12px;border-radius:999px;margin:5px;color:#93c5fd}
+.toolbar{display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:10px}
+select,button{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:6px;padding:8px}
+button{cursor:pointer}
+pre{margin:0;background:#08111f;padding:14px;border-radius:8px;overflow:auto;color:#93c5fd;font-size:13px;white-space:pre-wrap}
+
+/* Response Box styling */
+.response-title {
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #a7f3d0;
+  font-weight: bold;
+}
+.response-box {
+  color: #34d399;
+  border-left: 3px solid #10b981;
 }
 
-body{
-    background:#f5f7fb;
-    color:#333;
-    line-height:1.6;
+/* Two-column layout adjustments */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  padding: 40px 6%;
+}
+.left-col > div {
+  margin-bottom: 40px;
+}
+.right-col {
+  position: sticky;
+  top: 80px;
+  align-self: start;
 }
 
-header{
-    background:#0f172a;
-    color:white;
-    padding:18px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+/* Demo Popup Modal styling */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.close-modal {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+}
+.close-modal:hover { color: #fff; }
+.demo-textarea {
+  width: 100%;
+  height: 100px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #fff;
+  padding: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.demo-textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+.demo-response {
+  max-height: 200px;
+  margin-top: 15px;
 }
 
-header h2{
-    font-size:26px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
-}
-
-.hero{
-    padding:80px 8%;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-between;
-    background:white;
-}
-
-.hero-left{
-    max-width:600px;
-}
-
-.hero h1{
-    font-size:48px;
-    margin-bottom:20px;
-}
-
-.hero p{
-    font-size:20px;
-    color:#555;
-    margin-bottom:30px;
-}
-
-.button{
-    display:inline-block;
-    background:#2563eb;
-    color:white;
-    padding:14px 28px;
-    text-decoration:none;
-    border-radius:8px;
-    margin-right:15px;
-}
-
-.button.secondary{
-    background:#e5e7eb;
-    color:#111;
-}
-
-.hero-card{
-    background:#0f172a;
-    color:#fff;
-    padding:25px;
-    border-radius:10px;
-    width:420px;
-    overflow:auto;
-}
-
-section{
-    padding:70px 8%;
-}
-
-.section-title{
-    text-align:center;
-    font-size:34px;
-    margin-bottom:40px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-.card h3{
-    margin-bottom:10px;
-}
-
-.entities{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:center;
-}
-
-.badge{
-    background:#2563eb;
-    color:white;
-    padding:10px 18px;
-    border-radius:25px;
-}
-
-pre{
-    background:#111827;
-    color:#8ef7a5;
-    padding:20px;
-    border-radius:10px;
-    overflow:auto;
-}
-
-.pricing{
-    display:flex;
-    flex-wrap:wrap;
-    gap:25px;
-    justify-content:center;
-}
-
-.price-card{
-    background:white;
-    width:300px;
-    border-radius:12px;
-    padding:35px;
-    text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-.price{
-    font-size:42px;
-    margin:20px 0;
-}
-
-footer{
-    background:#0f172a;
-    color:white;
-    text-align:center;
-    padding:35px;
-}
-
-@media(max-width:900px){
-
-.hero{
-    text-align:center;
-}
-
-.hero-card{
-    width:100%;
-    margin-top:40px;
-}
-
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .right-col {
+    position: static;
+  }
 }
 </style>
-
 </head>
 <body>
-
 <header>
-
-<h2>PII Detector API</h2>
-
-<nav>
-<a href="#features">Features</a>
-<a href="#pricing">Pricing</a>
-<a href="#docs">Docs</a>
-</nav>
-
+  <b style='color:#60a5fa'>PII Detector API</b>
+  <nav><a href=#examples>Examples</a><a href=#p>Pricing</a></nav>
 </header>
 
-<section class="hero">
+<main class="main-layout">
+  <div class="left-col">
+    <div>
+      <h1>Detect & Redact PII</h1>
+      <div class=lead>Fast REST API for emails, phones, Aadhaar, PAN, GSTIN, UPI IDs, bank accounts and more.</div>
+      <button class=btn onclick="openDemo()">Try Demo</button>
+    </div>
 
-<div class="hero-left">
+    <div>
+      <h2>Supported Identifiers</h2>
+      <div>
+        <span class=badge>Email</span><span class=badge>Phone</span>
+        <span class=badge>Aadhaar</span><span class=badge>PAN</span>
+        <span class=badge>GSTIN</span><span class=badge>UPI</span>
+        <span class=badge>IFSC</span><span class=badge>Passport</span>
+      </div>
+    </div>
 
-<h1>Detect & Redact Personal Information</h1>
+    <div id=p>
+      <h2>Pricing</h2>
+      <div class=grid>
+        <div class=card><b>Free</b><br>1k req/mo</div>
+        <div class=card><b>Developer</b><br>$19/mo</div>
+        <div class=card><b>Enterprise</b><br>Custom</div>
+      </div>
+    </div>
+  </div>
 
-<p>
-A fast REST API for detecting personally identifiable information (PII),
-including India-specific identifiers such as Aadhaar, PAN, GSTIN, UPI IDs,
-phone numbers, emails, bank accounts, passports and more.
-</p>
+  <div class="right-col" id='examples'>
+    <h2>API Examples</h2>
+    <div class=card>
+      <div class=toolbar>
+        <select id=lang>
+          <option>JavaScript</option>
+          <option>cURL</option>
+          <option>Python</option>
+          <option>PHP</option>
+          <option>Java</option>
+          <option>Ruby</option>
+        </select>
+        <button onclick='copyCode()'>📋 Copy</button>
+      </div>
+      <pre id=code></pre>
+      
+      <div class="response-title">Expected API Response</div>
+      <pre class="response-box" id="response-box"></pre>
+    </div>
+  </div>
+</main>
 
-<a class="button" href="https://YOUR-HUGGINGFACE-SPACE">Try Demo</a>
-
-<a class="button secondary" href="#">API Docs</a>
-
+<div class="modal-overlay" id="demoModal" onclick="closeDemoOnOverlay(event)">
+  <div class="modal-content">
+    <button class="close-modal" onclick="closeDemo()">✕</button>
+    <h3 style="margin-top: 0; color: #60a5fa;">Interactive API Demo</h3>
+    <p class="lead" style="font-size: 14px; margin-bottom: 5px;">Enter raw text containing sensitive PII strings to evaluate response data:</p>
+    <textarea class="demo-textarea" id="demoInput" placeholder="Type or paste sample text here..."></textarea>
+    <button class="btn" style="margin: 0;" id="submitDemoBtn" onclick="runLiveDemo()">Analyze Text</button>
+    
+    <div id="demoResponseArea" style="display: none;">
+      <div class="response-title" style="color: #60a5fa;">Live API Response</div>
+      <pre class="response-box demo-response" id="demoResponseBox"></pre>
+    </div>
+  </div>
 </div>
 
-<div class="hero-card">
+<script>
+const sampleResponse = [
+  {"word": "ashish@ybl", "entity_group": "UPI"}, 
+  {"entity_group": "GIVENNAME", "score": "0.9939406", "word": "Ashish"}, 
+  {"entity_group": "TELEPHONENUM", "score": "0.9999077", "word": "+91-8800199037"}
+];
 
-<pre>
-POST /pii-check
+const ex={
+"JavaScript":`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PII Detector API Example</title>
+</head>
+<body>
+    <h1>API Test Output</h1>
+    <div id="output">Processing request...</div>
 
-{
-  "text":
-  "My PAN is ABCDE1234F.
-   Email me at
-   john@example.com"
+    <script>
+        async function verifyPIIData(textContent) {
+            const url = "https://ashish-m-pii-detector.hf.space/pii-check";
+            const outputDiv = document.getElementById("output");
+            
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({ text: textContent })
+                });
+
+                if (!response.ok) {
+                    throw new Error(\`HTTP error! status: \${response.status}\`);
+                }
+
+                const data = await response.json();
+                outputDiv.style.color = "#a7f3d0";
+                outputDiv.textContent = JSON.stringify(data, null, 2);
+                console.log("Redaction Data:", data);
+            } catch (error) {
+                outputDiv.style.color = "#f87171";
+                outputDiv.textContent = "Error running PII check: " + error.message;
+                console.error("Failed to run PII check:", error);
+            }
+        }
+
+        // Run automatically when the page loads
+        window.addEventListener("DOMContentLoaded", () => {
+            const rawText = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl";
+            verifyPIIData(rawText);
+        });
+    <\/script>
+</body>
+</html>`,
+
+"cURL":`curl --request POST \\
+  --url https://ashish-m-pii-detector.hf.space/pii-check \\
+  --header 'Content-Type: application/json' \\
+  --header 'Accept: application/json' \\
+  --data '{
+    "text": "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl"
+  }'`,
+
+"Python":`import requests
+import json
+import sys
+
+def check_pii(text_content):
+    url = "https://ashish-m-pii-detector.hf.space/pii-check"
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    payload = {
+        "text": text_content
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=payload)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"API Request Failed: {e}", file=sys.stderr)
+        return None
+
+if __name__ == "__main__":
+    sample_text = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl"
+    result = check_pii(sample_text)
+    if result:
+        print(json.dumps(result, indent=4))`,
+
+"PHP":`<?php
+
+function scanPII($text) {
+    $url = 'https://ashish-m-pii-detector.hf.space/pii-check';
+    
+    $payload = json_encode([
+        'text' => $text
+    ]);
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Accept: application/json',
+        'Content-Length: ' . strlen($payload)
+    ]);
+
+    $response = curl_exec($ch);
+    
+    if (curl_errno($ch)) {
+        $error_msg = curl_error($ch);
+        curl_close($ch);
+        throw new Exception("Curl error: " . $error_msg);
+    }
+
+    curl_close($ch);
+    return json_decode($response, true);
 }
 
-↓
+try {
+    $sampleText = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl";
+    $result = scanPII($sampleText);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Error: ' . $e->getMessage();
+}`,
 
-{
- "entities":[
-   {
-    "type":"PAN",
-    "value":"ABCDE1234F"
-   },
-   {
-    "type":"EMAIL",
-    "value":"john@example.com"
-   }
- ]
+"Java":`import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PiiDetectorClient {
+
+    public static void main(String[] args) {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String jsonPayload = "{\\"text\\":\\"my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl\\"}";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://ashish-m-pii-detector.hf.space/pii-check"))
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            if (response.statusCode() >= 200 && response.statusCode() < 300) {
+                System.out.println("Status Code: " + response.statusCode());
+                System.out.println("Response Body:\\n" + response.body());
+            } else {
+                System.err.println("Server returned error status: " + response.statusCode());
+            }
+        } catch (IOException | InterruptedException e) {
+            System.err.println("Exception occurred while sending request: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}`,
+
+"Ruby":`require 'net/http'
+require 'uri'
+require 'json'
+
+def check_pii_content(text_to_scan)
+  uri = URI.parse("https://ashish-m-pii-detector.hf.space/pii-check")
+  
+  header = {
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json'
+  }
+  
+  payload = {
+    text: text_to_scan
+  }
+
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true if uri.scheme == 'https'
+
+  request = Net::HTTP::Post.new(uri.request_uri, header)
+  request.body = payload.to_json
+
+  begin
+    response = http.request(request)
+    if response.code.to_i == 200
+      puts "Success:"
+      puts JSON.pretty_generate(JSON.parse(response.body))
+    else
+      puts "Server Error: #{response.code} - #{response.message}"
+    end
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+end
+
+sample_input = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl"
+check_pii_content(sample_input)`
+};
+
+let s=document.getElementById('lang'),
+    c=document.getElementById('code'),
+    r=document.getElementById('response-box');
+
+function u(){
+  c.textContent=ex[s.value];
+  r.textContent=JSON.stringify(sampleResponse, null, 2);
 }
-</pre>
 
-</div>
+s.onchange=u;
+u();
 
-</section>
+function copyCode(){
+  navigator.clipboard.writeText(c.textContent);
+}
 
-<section id="features">
+/* Demo Modal Operations */
+function openDemo() {
+  document.getElementById('demoModal').style.display = 'flex';
+  document.getElementById('demoInput').value = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl";
+  document.getElementById('demoResponseArea').style.display = 'none';
+}
 
-<h2 class="section-title">
-Why Choose Our API?
-</h2>
+function closeDemo() {
+  document.getElementById('demoModal').style.display = 'none';
+}
 
-<div class="grid">
+function closeDemoOnOverlay(e) {
+  if (e.target.id === 'demoModal') { closeDemo(); }
+}
 
-<div class="card">
-<h3>Fast REST API</h3>
-<p>Standard JSON API with low latency.</p>
-</div>
+async function runLiveDemo() {
+  const inputText = document.getElementById('demoInput').value;
+  const responseArea = document.getElementById('demoResponseArea');
+  const responseBox = document.getElementById('demoResponseBox');
+  const submitBtn = document.getElementById('submitDemoBtn');
 
-<div class="card">
-<h3>🇮🇳 India Focused</h3>
-<p>Detect Aadhaar, PAN, GSTIN, UPI IDs and more.</p>
-</div>
+  if (!inputText.trim()) {
+    alert("Please enter some text to check.");
+    return;
+  }
 
-<div class="card">
-<h3>🤖 AI Ready</h3>
-<p>Redact PII before sending prompts to LLMs.</p>
-</div>
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Analyzing...";
+  responseArea.style.display = 'block';
+  responseBox.style.color = '#94a3b8';
+  responseBox.style.borderColor = '#334155';
+  responseBox.textContent = "Connecting to API endpoint...";
 
-<div class="card">
-<h3>🔒 Privacy First</h3>
-<p>Designed for compliance and secure applications.</p>
-</div>
+  try {
+    const response = await fetch("https://ashish-m-pii-detector.hf.space/pii-check", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ text: inputText })
+    });
 
-</div>
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-</section>
-
-<section>
-
-<h2 class="section-title">
-Supported Entities
-</h2>
-
-<div class="entities">
-<div class="badge">Name</div>
-<div class="badge">Email</div>
-<div class="badge">Phone</div>
-<div class="badge">Aadhaar</div>
-<div class="badge">PAN</div>
-<div class="badge">Passport</div>
-<div class="badge">GSTIN</div>
-<div class="badge">IFSC</div>
-<div class="badge">UPI ID</div>
-<div class="badge">Bank Account</div>
-<div class="badge">Credit Card</div>
-</div>
-
-</section>
-
-<section id="docs">
-
-<h2 class="section-title">
-Example Request
-</h2>
-
-<pre>
-	curl -X POST   "https://ashish-m-pii-detector.hf.space/pii-check"   -H "Content-Type: application/json"   -d '{"text":"my name is Ashish and reach me at +91-8800199037 and ashish@ybl"}'
-
-"[{\"word\": \"ashish@ybl\", \"entity_group\": \"UPI\"}, {\"entity_group\": \"GIVENNAME\", \"score\": \"0.9991089\", \"word\": \"Ashish\"}, {\"entity_group\": \"TELEPHONENUM\", \"score\": \"0.99990034\", \"word\": \"+91-8800199037\"}]"ashish@ashish-HP-ProBook-440-G2:~/project_code/api-services$ curl -X POST   "https://ashish-m-pii-detector.hf.space/pii-check"   -H "Content-Type: application/json"   -d '{"text":"my name is Ashish and reach me at +91-8800199037 and ashish@yb^C}'
-
-</pre>
-
-</section>
-
-<section id="pricing">
-
-<h2 class="section-title">
-Pricing
-</h2>
-
-<div class="pricing">
-
-<div class="price-card">
-
-<h3>Free</h3>
-
-<div class="price">$0</div>
-
-<p>1,000 requests/month</p>
-
-<br>
-
-<a class="button" href="#">
-Get Started
-</a>
-
-</div>
-
-<div class="price-card">
-
-<h3>Developer</h3>
-
-<div class="price">$19</div>
-
-<p>100,000 requests/month</p>
-
-<br>
-
-<a class="button" href="#">
-Subscribe
-</a>
-
-</div>
-
-<div class="price-card">
-
-<h3>Enterprise</h3>
-
-<div class="price">Custom</div>
-
-<p>Unlimited requests</p>
-
-<br>
-
-<a class="button" href="#">
-Contact Sales
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<h2>PII Detector API</h2>
-
-<p>
-Protect customer data • Enable compliance • Secure AI applications
-</p>
-
-<br>
-
-<p>
-Demo:
-https://YOUR-HUGGINGFACE-SPACE
-</p>
-
-<p>
-API:
-https://YOUR-API-ENDPOINT
-</p>
-
-</footer>
-
+    const data = await response.json();
+    responseBox.style.color = '#34d399';
+    responseBox.style.borderColor = '#10b981';
+    responseBox.textContent = JSON.stringify(data, null, 2);
+  } catch (error) {
+    responseBox.style.color = '#f87171';
+    responseBox.style.borderColor = '#ef4444';
+    responseBox.textContent = "Error making API call:\n" + error.message;
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Analyze Text";
+  }
+}
+</script>
 </body>
 </html>
