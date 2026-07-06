@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 <head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
@@ -174,78 +174,112 @@ pre{margin:0;background:#08111f;padding:14px;border-radius:8px;overflow:auto;col
 <body>
 <header>
   <b style='color:#60a5fa'>PII Detector API</b>
-  <nav><a href=#examples>Examples</a><a href=#p>Integrations</a></nav>
+    <nav aria-label="Primary Navigation">
+        <a href="#offerings">Offerings</a>
+        <a href="#customers">Industries</a>
+        <a href="#enterprise">Enterprise</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#examples">Examples</a>
+        <a href="mailto:ashish.mukherjee@gmail.com?subject=Enterprise%20License">
+            Contact
+        </a>
+    </nav>
 </header>
 
 <main class="main-layout">
   <div class="left-col">
     <div>
-      <h1>Detect & Redact PII</h1>
-      <div class=lead>Fast REST API for variety of PII detection</div>
-      <button class=btn onclick="openDemo()">Try Demo</button>
-<a href="mailto:ashish.mukherjee@gmail.com?subject=PII%20Detector%20Inquiry" class="contact-btn">
-    Contact Us
-</a>
+	<!-- Hero Section -->
+	<section id="hero">
+		<h1>Enterprise PII Detection API</h1>
+		<p class="lead" style="max-width:720px;">
+		Detect, classify, and redact personally identifiable information enterprise data systems 
+		using a fast, secure REST API - US and India-ready.
+		Prevent sensitive customer information from leaking into AI systems, logs, databases, support tickets and third-party services.
+		</p>
+
+		<div style="margin-top:24px;">
+			<button class="btn" onclick="openDemo()">Try Live Demo</button>
+
+			<a href="mailto:ashish.mukherjee@gmail.com?subject=Enterprise%20License"
+			   class="contact-btn">
+				Request a Call	
+			</a>
+		</div>
+
+		<!-- Trust Metrics -->
+		<div style="
+			    display:grid;
+			    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+			    gap:12px;
+			    margin-top:30px;
+			    ">
+
+			<div class="card" style="padding:14px;text-align:center;">
+				<div style="font-size:20px;font-weight:bold;color:#60a5fa;">20+</div>
+				<div style="color:#b8c2d1;">Supported Identifiers</div>
+			</div>
+
+			<div class="card" style="padding:14px;text-align:center;">
+				<div style="font-size:20px;font-weight:bold;color:#60a5fa;">Zero</div>
+				<div style="color:#b8c2d1;">Data Retention</div>
+			</div>
+
+			<div class="card" style="padding:14px;text-align:center;">
+				<div style="font-size:20px;font-weight:bold;color:#60a5fa;">Multi-region</div>
+				<div style="color:#b8c2d1;">Cloud / On-Prem Infra</div>
+			</div>
+		</div>
+	</section>
     </div>
 
     <div>
 	<section id="offerings" class="section">
-	<h2>Product Offerings</h2>
-
-	<div class="grid">
-		<div class="card">
-			<h3>🛡 Compliance</h3>
-			<p>Support GDPR, HIPAA, PCI DSS, CCPA, and internal privacy workflows with automated PII detection.</p>
+		<h2>Flexible Deployment Pricing</h2>
+		<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+			<div class="card" style="border-top: 3px solid #60a5fa;">
+				<h3>Free Tier</h3>
+				<p style="font-size: 24px; font-weight: bold; color: #fff; margin: 8px 0;">$0</p>
+				<p style="color: #9fb0c7; font-size: 14px;">Ideal for sandbox evaluation and local testing.</p>
+				<ul style="padding-left:15px; font-size: 13px; line-height: 1.8;">
+					<li>10k Monthly Requests</li>
+					<li>Standard Cloud API</li>
+					<li>Community Support</li>
+				</ul>
+			</div>
+			<div class="card" style="border-top: 3px solid #2563eb;">
+				<h3>Enterprise</h3>
+				<p style="font-size: 24px; font-weight: bold; color: #fff; margin: 8px 0;">Starts at $100<span style="font-size:14px; font-weight:normal;">/mo</span></p>
+				<p style="color: #9fb0c7; font-size: 14px;">For production applications and scale pipelines.</p>
+				<ul style="padding-left:15px; font-size: 13px; line-height: 1.8;">
+					<li>200k Monthly Requests</li>
+					<li>High-Throughput Node</li>
+					<li>Priority Email Support</li>
+				</ul>
+			</div>
 		</div>
-		<div class="card">
-			<h3>📈 Flexible Plans</h3>
-			<p>Free tier for evaluation, scalable paid plans, and enterprise deployments for high-volume workloads.</p>
-		</div>
-
-		<div class="card">
-			<h3>💼 Professional Services</h3>
-			<p>Custom PII detection, private deployment, AI/LLM integration, integration with custom data pipelines.</p>
-		</div>
-	</div>
 	</section>
     </div>
 
-    <section class="contact-cta">
-    <h3>Need a Custom Solution?</h3>
-    <p align="left">
-	Managed deployments, custom PII detection or custom integrations?
-    </p>
+    <section id="customers" >
+    <h2>Industries</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>🏦 Financial Services</h3>
+            <p>Protect customer data, meet compliance requirements, and detect sensitive information in transactions and documents.</p>
+        </div>
 
-    <div class="contact-links">
-	Contact us at<a href="mailto:ashish.mukherjee@gmail.com">ashish.mukherjee@gmail.com</a>
+        <div class="card">
+            <h3>🤖 AI & LLM Applications</h3>
+            <p>Remove sensitive information before sending prompts to language models or storing conversation history.</p>
+        </div>
+
+        <div class="card">
+            <h3>☁ SaaS Platforms</h3>
+            <p>Automatically detect and redact PII in user-generated content, support tickets, uploads, and application logs.</p>
+        </div>
     </div>
     </section>
-
-    <div>
-      <h2>Supported Identifiers</h2>
-      <div>
-        <span class=badge>Email</span><span class=badge>Phone</span>
-        <span class=badge>Aadhaar (India)</span><span class=badge>PAN (India)</span>
-        <span class=badge>GSTIN (India)</span><span class=badge>UPI (India)</span>
-        <span class=badge>IFSC (India)</span><span class=badge>Passport No. (India)</span>
-        <span class=badge>City</span><span class=badge>Date Of Birth</span>
-        <span class=badge>Given Name</span><span class=badge>SSN</span>
-        <span class=badge>User Name</span><span class=badge>Voter ID (India)</span>
-        <span class=badge>Zip/PIN Code</span><span class=badge>CC Number</span>
-      </div>
-    </div>
-
-    <div id="p">
-	<h2>Supported Integrations</h2>
-	<div>
-		Connect the PII Detector to virtually any data source. <br/><br/>
-		Scan databases, cloud storage, files, APIs, message queues, data pipelines, and enterprise applications using a single API.<br/><br/>
-
-		Supports PostgreSQL, MySQL, MongoDB, SQL Server, Oracle, Amazon S3, Azure Blob Storage, Google Cloud Storage, Kafka, RabbitMQ, Snowflake, BigQuery, Redshift, JSON, CSV, PDF, Office documents, and custom applications.<br/><br/>
-
-Deploy as a cloud API or within your own infrastructure for real-time or batch processing.
-	</div>
-    </div>
 
     <section id="enterprise" style="margin-top:40px;">
 	    <h2>Enterprise Deployment</h2>
@@ -280,6 +314,91 @@ Deploy as a cloud API or within your own infrastructure for real-time or batch p
 		    </div>
 	    </div>
     </section>
+
+    <br/><br/>
+    <section id="integrations">
+	    <h2>Supported Integrations</h2>
+	    <div class="grid">
+		    <div class="card">
+			    <h3>🗄️ Databases</h3>
+			    <p>PostgreSQL, MySQL, MongoDB, SQL Server, Oracle</p>
+		    </div>
+		    <div class="card">
+			    <h3>☁️ Object Store</h3>
+			    <p>Amazon S3, Azure Blob Storage, Google Cloud Storage</p>
+		    </div>
+		    <div class="card">
+			    <h3>⚡ Data Pipelines</h3>
+			    <p>Kafka, RabbitMQ, Snowflake, BigQuery, Redshift</p>
+		    </div>
+	    </div>
+    </section>
+
+    <br/><br/>
+    <section id="pii" style="margin-top:40px;">
+    <h2>Supported Identifiers</h2>
+    <p class="lead" style="max-width:700px;">
+        Detect and classify commonly used global identifiers together with
+        India-specific personal and financial identifiers.
+    </p>
+
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+        <!-- Global -->
+        <div class="card">
+            <h3>🌍 Global Identifiers</h3>
+            <div style="margin-top:12px;">
+                <span class="badge">Email Address</span>
+                <span class="badge">Phone Number</span>
+                <span class="badge">Given Name</span>
+                <span class="badge">Username</span>
+                <span class="badge">Date of Birth</span>
+                <span class="badge">City</span>
+                <span class="badge">ZIP / Postal Code</span>
+                <span class="badge">Passport Number</span>
+                <span class="badge">Social Security Number (SSN)</span>
+            </div>
+        </div>
+
+        <!-- India -->
+        <div class="card">
+            <h3>🇮🇳 India-Specific</h3>
+            <div style="margin-top:12px;">
+                <span class="badge">Aadhaar</span>
+                <span class="badge">PAN</span>
+                <span class="badge">GSTIN</span>
+                <span class="badge">Voter ID</span>
+                <span class="badge">Indian Passport</span>
+                <span class="badge">PIN Code</span>
+            </div>
+        </div>
+
+        <!-- Financial -->
+        <div class="card">
+            <h3>💳 Financial Identifiers</h3>
+            <div style="margin-top:12px;">
+                <span class="badge">Credit Card Number</span>
+                <span class="badge">UPI ID</span>
+                <span class="badge">IFSC Code</span>
+            </div>
+        </div>
+    </div>
+
+    <p style="margin-top:18px;color:#9fb0c7;font-size:14px;">
+        Need additional entity types? Custom identifiers and domain-specific
+        recognizers can be added for enterprise deployments.
+    </p>
+    </section>
+
+    <section class="contact-cta">
+    <h3>Need a Custom Solution?</h3>
+    <p align="left">
+	Managed deployments, custom PII detection or custom integrations?
+    </p>
+
+    <div class="contact-links">
+	Contact us at<a href="mailto:ashish.mukherjee@gmail.com">ashish.mukherjee@gmail.com</a>
+    </div>
+    </section>
   </div>
 
   <div class="right-col" id='examples'>
@@ -302,12 +421,9 @@ Deploy as a cloud API or within your own infrastructure for real-time or batch p
       <pre class="response-box" id="response-box"></pre>
     </div>
   </div>
-
-
 </main>
 
 <footer style="margin-top:60px;padding:40px 6%;background:#111827;border-top:1px solid #334155;color:#cbd5e1;">
-
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;">
 
     <!-- Brand -->
@@ -321,10 +437,14 @@ Deploy as a cloud API or within your own infrastructure for real-time or batch p
     <!-- Product -->
     <div>
       <h4 style="margin-top:0;color:#fff;">Product</h4>
-      <p><a href="#examples">API Examples</a></p>
-      <p><a href="#offerings">Product Offerings</a></p>
-      <p><a href="#enterprise">Enterprise Deployment</a></p>
-      <p><a href="#p">Supported Integrations</a></p>
+
+      <ul>
+      <li><a href="#offerings">Offerings</a></li>
+      <li><a href="#customers">Industries</a></li>
+      <li><a href="#enterprise">Enterprise Deployment</a></li>
+      <li><a href="#integrations">Integrations</a></li>
+      <li><a href="#examples">API Examples</a></li> 
+      </ul>
     </div>
 
     <!-- Enterprise -->
@@ -338,26 +458,17 @@ Deploy as a cloud API or within your own infrastructure for real-time or batch p
 
     <!-- Contact -->
     <div>
-      <h4 style="margin-top:0;color:#fff;">Contact</h4>
-      <p>
-        <a href="mailto:ashish.mukherjee@gmail.com">
-          ashish.mukherjee@gmail.com
-        </a>
-      </p>
-
       <a href="mailto:ashish.mukherjee@gmail.com?subject=PII%20Detector%20Enterprise%20Inquiry"
          class="contact-btn"
          style="margin-top:8px;display:inline-block;">
          Contact Sales
       </a>
     </div>
-
   </div>
 
   <hr style="border:none;border-top:1px solid #334155;margin:30px 0;">
 
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;color:#94a3b8;font-size:14px;">
-
     <div>
       © 2026 PII Detector API. All rights reserved.
     </div>
@@ -365,9 +476,7 @@ Deploy as a cloud API or within your own infrastructure for real-time or batch p
     <div>
       Stateless Processing • HTTPS Encryption • Private Deployments Available
     </div>
-
   </div>
-
 </footer>
 
 <div class="modal-overlay" id="demoModal" onclick="closeDemoOnOverlay(event)">
@@ -435,7 +544,7 @@ const ex={
 
         // Run automatically when the page loads
         window.addEventListener("DOMContentLoaded", () => {
-            const rawText = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl";
+            const rawText = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl";
             verifyPIIData(rawText);
         });
     <\/script>
@@ -447,7 +556,7 @@ const ex={
   --header 'Content-Type: application/json' \\
   --header 'Accept: application/json' \\
   --data '{
-    "text": "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl"
+    "text": "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl"
   }'`,
 
 "Python":`import requests
@@ -473,7 +582,7 @@ def check_pii(text_content):
         return None
 
 if __name__ == "__main__":
-    sample_text = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl"
+    sample_text = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl"
     result = check_pii(sample_text)
     if result:
         print(json.dumps(result, indent=4))`,
@@ -510,7 +619,7 @@ function scanPII($text) {
 }
 
 try {
-    $sampleText = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl";
+    $sampleText = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl";
     $result = scanPII($sampleText);
     print_r($result);
 } catch (Exception $e) {
@@ -528,7 +637,7 @@ public class PiiDetectorClient {
     public static void main(String[] args) {
         HttpClient client = HttpClient.newHttpClient();
         
-        String jsonPayload = "{\\"text\\":\\"my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl\\"}";
+        String jsonPayload = "{\\"text\\":\\"my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl\\"}";
         
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://ashish-m-pii-detector.hf.space/pii-check"))
@@ -588,7 +697,7 @@ def check_pii_content(text_to_scan)
   end
 end
 
-sample_input = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl"
+sample_input = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl"
 check_pii_content(sample_input)`
 };
 
@@ -611,7 +720,7 @@ function copyCode(){
 /* Demo Modal Operations */
 function openDemo() {
   document.getElementById('demoModal').style.display = 'flex';
-  document.getElementById('demoInput').value = "my name is Ashish and reach me at +91-8800199037 and pay at  ashish@ybl";
+  document.getElementById('demoInput').value = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl";
   document.getElementById('demoResponseArea').style.display = 'none';
 }
 
