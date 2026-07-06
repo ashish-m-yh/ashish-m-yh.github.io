@@ -115,12 +115,66 @@ pre{margin:0;background:#08111f;padding:14px;border-radius:8px;overflow:auto;col
     position: static;
   }
 }
+
+.contact-cta {
+    margin: 40px 0;
+    padding: 24px;
+    text-align: center;
+    background: #1b2435;
+    border: 1px solid #2d3a55;
+    border-radius: 10px;
+}
+
+.contact-cta h3 {
+    margin: 0 0 8px;
+}
+
+.contact-cta p {
+    margin: 0 0 16px;
+    color: #b8c2d1;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-links a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+.contact-links a:hover {
+    text-decoration: underline;
+}
+
+.contact-links span {
+    color: #6b7280;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.contact-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
 </style>
 </head>
 <body>
 <header>
   <b style='color:#60a5fa'>PII Detector API</b>
-  <nav><a href=#examples>Examples</a><a href=#p>Pricing</a></nav>
+  <nav><a href=#examples>Examples</a><a href=#p>Integrations</a></nav>
 </header>
 
 <main class="main-layout">
@@ -129,7 +183,43 @@ pre{margin:0;background:#08111f;padding:14px;border-radius:8px;overflow:auto;col
       <h1>Detect & Redact PII</h1>
       <div class=lead>Fast REST API for variety of PII detection</div>
       <button class=btn onclick="openDemo()">Try Demo</button>
+<a href="mailto:ashish.mukherjee@gmail.com?subject=PII%20Detector%20Inquiry" class="contact-btn">
+    Contact Us
+</a>
     </div>
+
+    <div>
+	<section id="offerings" class="section">
+	<h2>Product Offerings</h2>
+
+	<div class="grid">
+		<div class="card">
+			<h3>🛡 Compliance</h3>
+			<p>Support GDPR, HIPAA, PCI DSS, CCPA, and internal privacy workflows with automated PII detection.</p>
+		</div>
+		<div class="card">
+			<h3>📈 Flexible Plans</h3>
+			<p>Free tier for evaluation, scalable paid plans, and enterprise deployments for high-volume workloads.</p>
+		</div>
+
+		<div class="card">
+			<h3>💼 Professional Services</h3>
+			<p>Custom PII detection, private deployment, AI/LLM integration, integration with custom data pipelines.</p>
+		</div>
+	</div>
+	</section>
+    </div>
+
+    <section class="contact-cta">
+    <h3>Need a Custom Solution?</h3>
+    <p align="left">
+	Managed deployments, custom PII detection or custom integrations?
+    </p>
+
+    <div class="contact-links">
+	Contact us at<a href="mailto:ashish.mukherjee@gmail.com">ashish.mukherjee@gmail.com</a>
+    </div>
+    </section>
 
     <div>
       <h2>Supported Identifiers</h2>
@@ -145,12 +235,16 @@ pre{margin:0;background:#08111f;padding:14px;border-radius:8px;overflow:auto;col
       </div>
     </div>
 
-    <div id=p>
-      <h2>Pricing</h2>
-      <div class=grid>
-        <div class=card><b>Free</b><br>1k req/mo</div>
-        <div class=card><b>Enterprise</b><br>Custom</div>
-      </div>
+    <div id="p">
+	<h2>Supported Integrations</h2>
+	<div>
+		Connect the PII Detector to virtually any data source. <br/><br/>
+		Scan databases, cloud storage, files, APIs, message queues, data pipelines, and enterprise applications using a single API.<br/><br/>
+
+		Supports PostgreSQL, MySQL, MongoDB, SQL Server, Oracle, Amazon S3, Azure Blob Storage, Google Cloud Storage, Kafka, RabbitMQ, Snowflake, BigQuery, Redshift, JSON, CSV, PDF, Office documents, and custom applications.<br/><br/>
+
+Deploy as a cloud API or within your own infrastructure for real-time or batch processing.
+	</div>
     </div>
   </div>
 
