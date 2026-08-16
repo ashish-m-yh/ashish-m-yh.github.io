@@ -1,0 +1,33 @@
+<svg width="258" height="64" viewBox="0 0 258 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logo-title logo-description">
+  <title id="logo-title">PII Cloak</title>
+  <desc id="logo-description">A hooded privacy mark with a shield beside the PII Cloak wordmark.</desc>
+  <defs>
+    <linearGradient id="mark-gradient" x1="8" y1="9" x2="57" y2="57" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08C7F7"/>
+      <stop offset="0.52" stop-color="#1768F2"/>
+      <stop offset="1" stop-color="#6335E8"/>
+    </linearGradient>
+    <linearGradient id="word-gradient" x1="122" y1="20" x2="247" y2="45" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#078CF0"/>
+      <stop offset="0.52" stop-color="#1C63F2"/>
+      <stop offset="1" stop-color="#6D2FE7"/>
+    </linearGradient>
+  </defs>
+
+  <g aria-hidden="true">
+    <path d="M31.5 3.5C21.7 3.5 12.3 13.4 7.2 27.1C3.1 37.9 7.6 49.1 18.8 55.7C23.9 58.7 28.5 60.5 31.5 61.5C34.5 60.5 39.1 58.7 44.2 55.7C55.4 49.1 59.9 37.9 55.8 27.1C50.7 13.4 41.3 3.5 31.5 3.5Z" fill="url(#mark-gradient)"/>
+    <path d="M31.5 11.2C23.9 11.2 16.2 20.2 12.8 31.2C11.8 34.4 12.1 37.2 13.5 39.8C17.7 45 24.2 48.8 31.5 51.2C38.8 48.8 45.3 45 49.5 39.8C50.9 37.2 51.2 34.4 50.2 31.2C46.8 20.2 39.1 11.2 31.5 11.2Z" fill="#07162E"/>
+    <path d="M18.1 32.7C21.1 33 24.1 31.9 27 29.4C25.7 33.9 22.8 36.2 18.7 36.3L18.1 32.7Z" fill="white"/>
+    <path d="M44.9 32.7C41.9 33 38.9 31.9 36 29.4C37.3 33.9 40.2 36.2 44.3 36.3L44.9 32.7Z" fill="white"/>
+    <path d="M31.5 4.8C23 6.2 15.5 15.2 10.5 27.8" stroke="#48D6FA" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+
+    <path d="M40.5 40.4L49 36.8L57.5 40.4V47.3C57.5 53.3 53.9 57.3 49 60C44.1 57.3 40.5 53.3 40.5 47.3V40.4Z" fill="white" stroke="#0D6CEB" stroke-width="2"/>
+    <rect x="45.5" y="45.8" width="7" height="6.2" rx="1.4" fill="#0D6CEB"/>
+    <path d="M47.1 45.8V43.9C47.1 42.8 47.9 42 49 42C50.1 42 50.9 42.8 50.9 43.9V45.8" stroke="#0D6CEB" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <g font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="0">
+    <text x="72" y="42" fill="#0A1933">PII</text>
+    <text x="119" y="42" fill="url(#word-gradient)">Cloak</text>
+  </g>
+</svg>

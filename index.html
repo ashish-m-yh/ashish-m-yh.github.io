@@ -1,843 +1,485 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset='utf-8'>
-<meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>PII Cloak</title>
-<style>
-body{margin:0;font:15px Arial;background:#0b1120;color:#eef2ff}
-header{display:flex;justify-content:space-between;align-items:center;padding:12px 6%;background:#111827;border-bottom:1px solid #334155;position:sticky;top:0;z-index:10}
-a{color:#93c5fd;text-decoration:none;margin-left:16px}
-.menu-toggle,.menu-close{display:none}
-h1{font-size:38px;margin-top:0}
-h2{margin-top:0}
-.lead{color:#9fb0c7;font-size:16px;line-height:1.5}
-.btn{display:inline-block;background:#2563eb;color:#fff;padding:10px 18px;border-radius:7px;margin:16px 8px 0 0;text-decoration:none;cursor:pointer;border:none;font-size:15px}
-.btn:hover{background:#1d4ed8}
-.card{background:#172033;border:1px solid #334155;border-radius:10px;padding:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
-.badge{display:inline-block;background:#1e293b;border:1px solid #334155;padding:6px 12px;border-radius:999px;margin:5px;color:#93c5fd}
-.toolbar{display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:10px}
-select,button{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:6px;padding:8px}
-button{cursor:pointer}
-pre{margin:0;background:#08111f;padding:14px;border-radius:8px;overflow:auto;color:#93c5fd;font-size:13px;white-space:pre-wrap}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PII Cloak | PII Detection API and Database Scanner</title>
+  <meta name="description" content="Detect and redact personal data in text, scan PostgreSQL and Oracle for likely PII columns, and generate JSON and HTML exposure reports with PII Cloak.">
+  <meta name="author" content="PII Cloak">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0b1b35">
+  <link rel="canonical" href="https://pii-cloak.net/">
+  <link rel="icon" href="assets/images/logo/logo.svg" type="image/svg+xml">
 
-/* Response Box styling */
-.response-title {
-  margin-top: 15px;
-  margin-bottom: 8px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #a7f3d0;
-  font-weight: bold;
-}
-.response-box {
-  color: #34d399;
-  border-left: 3px solid #10b981;
-}
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="PII Cloak">
+  <meta property="og:title" content="PII Cloak | PII Detection API and Database Scanner">
+  <meta property="og:description" content="Detect and redact PII in text, scan PostgreSQL and Oracle for likely PII columns, and generate JSON and HTML exposure reports.">
+  <meta property="og:url" content="https://pii-cloak.net/">
+  <meta property="og:image" content="https://pii-cloak.net/assets/images/logo/PII-Cloak-Logo-high-contrast.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="PII Cloak detection, redaction, and data protection">
 
-/* Two-column layout adjustments */
-.main-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 40px;
-  padding: 40px 6%;
-}
-.left-col > div {
-  margin-bottom: 40px;
-}
-.right-col {
-  position: sticky;
-  top: 80px;
-  align-self: start;
-}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PII Cloak | PII Detection API and Database Scanner">
+  <meta name="twitter:description" content="Detect and redact PII in text and locate likely PII columns in PostgreSQL and Oracle databases.">
+  <meta name="twitter:image" content="https://pii-cloak.net/assets/images/logo/PII-Cloak-Logo-high-contrast.png">
+  <meta name="twitter:image:alt" content="PII Cloak detection, redaction, and data protection">
 
-/* Demo Popup Modal styling */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(4px);
-  z-index: 100;
-  justify-content: center;
-  align-items: center;
-}
-.modal-content {
-  background: #111827;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 600px;
-  padding: 24px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-.close-modal {
-  position: absolute;
-  top: 16px; right: 16px;
-  background: transparent;
-  border: none;
-  color: #94a3b8;
-  font-size: 20px;
-  cursor: pointer;
-}
-.close-modal:hover { color: #fff; }
-.demo-textarea {
-  width: 100%;
-  height: 100px;
-  background: #0f172a;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  color: #fff;
-  padding: 12px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  resize: vertical;
-  box-sizing: border-box;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.demo-textarea:focus {
-  outline: none;
-  border-color: #2563eb;
-}
-.demo-response {
-  max-height: 200px;
-  margin-top: 15px;
-}
-
-@media (max-width: 1024px) {
-  body.menu-open{overflow:hidden}
-  header{padding:12px 5%}
-  header nav{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:1000;
-    background:#0b1120;
-    padding:96px 8% 40px;
-    box-sizing:border-box;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
-  }
-  header nav.is-open{display:flex}
-  header nav a{
-    width:min(100%,420px);
-    margin:0;
-    padding:15px 20px;
-    border-radius:8px;
-    color:#eef2ff;
-    font-size:22px;
-    font-weight:600;
-    text-align:center;
-    box-sizing:border-box;
-  }
-  header nav a:hover,header nav a:focus-visible{background:#172033;color:#93c5fd;outline:none}
-  .menu-toggle,.menu-close{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:44px;
-    height:44px;
-    padding:0;
-    border:1px solid #475569;
-    border-radius:8px;
-    background:#172033;
-    color:#fff;
-    font-size:25px;
-    line-height:1;
-  }
-  .menu-close{position:absolute;top:12px;right:5%;font-size:28px}
-  .main-layout {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .right-col {
-    position: static;
-  }
-}
-
-.contact-cta {
-    margin: 40px 0;
-    padding: 24px;
-    text-align: center;
-    background: #1b2435;
-    border: 1px solid #2d3a55;
-    border-radius: 10px;
-}
-
-.contact-cta h3 {
-    margin: 0 0 8px;
-}
-
-.contact-cta p {
-    margin: 0 0 16px;
-    color: #b8c2d1;
-}
-
-.contact-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.contact-links a {
-    color: #4da3ff;
-    text-decoration: none;
-}
-
-.contact-links a:hover {
-    text-decoration: underline;
-}
-
-.contact-links span {
-    color: #6b7280;
-}
-
-.contact-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #2563eb;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-}
-
-.contact-btn:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
-}
-</style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://pii-cloak.net/#organization",
+          "name": "PII Cloak",
+          "url": "https://pii-cloak.net/",
+          "logo": "https://pii-cloak.net/assets/images/logo/logo.svg",
+          "email": "enquiry@pii-cloak.net"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://pii-cloak.net/#website",
+          "url": "https://pii-cloak.net/",
+          "name": "PII Cloak",
+          "description": "PII detection and redaction API with PostgreSQL and Oracle database scanning.",
+          "publisher": {
+            "@id": "https://pii-cloak.net/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://pii-cloak.net/#software",
+          "name": "PII Cloak",
+          "applicationCategory": "SecurityApplication",
+          "operatingSystem": "Docker",
+          "url": "https://pii-cloak.net/",
+          "description": "Detect and redact personal data in text, scan PostgreSQL and Oracle databases for likely PII columns, and generate JSON and HTML reports.",
+          "publisher": {
+            "@id": "https://pii-cloak.net/#organization"
+          },
+          "featureList": [
+            "PII detection and redaction API",
+            "PostgreSQL database scanning",
+            "Oracle database scanning",
+            "JSON and HTML exposure reports",
+            "Stateless private-network deployment"
+          ]
+        }
+      ]
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-<header>
-    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">☰</button>
-  <b style='color:#60a5fa'>PII Cloak</b>
-    <nav id="primary-navigation" aria-label="Primary Navigation">
-        <button class="menu-close" type="button" aria-label="Close navigation menu">&times;</button>
-        <a href="#offerings">Offerings</a>
-        <a href="#customers">Industries</a>
-        <a href="#enterprise">Enterprise</a>
-        <a href="#integrations">Integrations</a>
-        <a href="#examples">Examples</a>
-        <a href="mailto:ashishm@pii-cloak.net?subject=Enterprise%20License">
-            Contact
-        </a>
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="PII Cloak home">
+      <img src="assets/images/logo/logo.svg" width="258" height="64" alt="PII Cloak" class="logo">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="primary-navigation" class="primary-nav" aria-label="Primary Navigation">
+      <button class="menu-close" type="button" aria-label="Close navigation menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <a href="#offerings">Offerings</a>
+      <a href="#customers">Industries</a>
+      <a href="#enterprise">Architecture</a>
+      <a href="#integrations">Database Scans</a>
+      <a href="#examples">API</a>
+      <a class="nav-cta" href="mailto:enquiry@pii-cloak.net?subject=Enterprise%20License">Contact</a>
     </nav>
-</header>
+  </header>
 
-<main class="main-layout">
-  <div class="left-col">
-    <div>
-	<!-- Hero Section -->
-	<section id="hero">
-		<h1>PII Cloak (Enterprise PII Detection API)</h1>
-		<p class="lead" style="max-width:720px;">
-		Detect, classify, and redact personally identifiable information in enterprise data systems 
-		using a fast, secure REST API - US and India-ready.
-		Prevent sensitive customer information from leaking into AI systems, logs, databases, support tickets and third-party services.
-		</p>
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <div class="eyebrow">PII detection, redaction, and database discovery</div>
+        <h1>Find and redact PII across text and databases.</h1>
+        <p class="lead">
+          Detect and redact personal data through a REST API, then scan PostgreSQL or Oracle databases
+          to identify columns likely to contain PII and generate actionable JSON and HTML reports.
+        </p>
 
-		<div style="margin-top:24px;">
-			<button class="btn" onclick="openDemo()">Try Live Demo</button>
-
-			<a href="mailto:ashishm@pii-cloak.net?subject=Enterprise%20License"
-			   class="contact-btn">
-				Request a Call	
-			</a>
-		</div>
-
-		<!-- Trust Metrics -->
-		<div style="
-			    display:grid;
-			    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-			    gap:12px;
-			    margin-top:30px;
-			    ">
-
-			<div class="card" style="padding:14px;text-align:center;">
-				<div style="font-size:20px;font-weight:bold;color:#60a5fa;">20+</div>
-				<div style="color:#b8c2d1;">Supported Identifiers</div>
-			</div>
-
-			<div class="card" style="padding:14px;text-align:center;">
-				<div style="font-size:20px;font-weight:bold;color:#60a5fa;">Zero</div>
-				<div style="color:#b8c2d1;">Data Retention</div>
-			</div>
-
-			<div class="card" style="padding:14px;text-align:center;">
-				<div style="font-size:20px;font-weight:bold;color:#60a5fa;">Multi-region</div>
-				<div style="color:#b8c2d1;">Cloud / On-Prem Infra</div>
-			</div>
-		</div>
-	</section>
-    </div>
-
-    <section id="why-us" >
-    <h2>Why use PII Cloak?</h2>
-    <p class="lead" style="max-width:700px;">
-    While frameworks like Microsoft Presidio are powerful and highly customizable, they often require integration effort and infrastructure. PII Cloak is designed as a ready-to-use API that delivers fast PII detection with minimal setup, allowing teams to integrate privacy protection in minutes instead of days. Further, we help you with quick integrations into your data pipeline in a variety of deployment models.
-    </p>
-    </section>
-
-    <section id="customers" >
-    <h2>Industries</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>🏦 Financial Services</h3>
-            <p>Protect customer data, meet compliance requirements, and detect sensitive information in transactions and documents.</p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <button class="btn btn-primary" type="button" onclick="openDemo()">Try Live Demo</button>
+          <a class="btn btn-secondary" href="mailto:enquiry@pii-cloak.net?subject=Enterprise%20License">Request a Call</a>
         </div>
 
-        <div class="card">
-            <h3>🤖 AI & LLM Applications</h3>
-            <p>Remove sensitive information before sending prompts to language models or storing conversation history.</p>
+        <div class="metrics" aria-label="Trust metrics">
+          <div class="metric">
+            <strong>24</strong>
+            <span>Supported PII fields</span>
+          </div>
+          <div class="metric">
+            <strong>2</strong>
+            <span>Database scanners</span>
+          </div>
+          <div class="metric">
+            <strong>JSON + HTML</strong>
+            <span>Exposure reports</span>
+          </div>
         </div>
-
-        <div class="card">
-            <h3>☁ SaaS Platforms</h3>
-            <p>Automatically detect and redact PII in user-generated content, support tickets, uploads, and application logs.</p>
-        </div>
-    </div>
-    </section>
-
-    <section id="enterprise" style="margin-top:40px;">
-	    <h2>Enterprise Deployment</h2>
-	    <div class="grid">
-		    <div class="card">
-			    <h3>🔒 Security</h3>
-			    <ul style="padding-left:10px;line-height:1.8;margin:0;">
-				    <li>HTTPS encrypted API communication</li>
-				    <li>Stateless request processing</li>
-				    <li>No persistent storage of submitted data</li>
-				    <li>Private deployments available</li>
-			    </ul>
-		    </div>
-
-		    <div class="card">
-			    <h3>🏢 Environments</h3>
-			    <ul style="padding-left:18px;line-height:1.8;margin:0;">
-				    <li>Cloud-hosted API</li>
-				    <li>On-premise deployment</li>
-				    <li>Private Cloud (AWS, Azure, GCP)</li>
-				    <li>Container support</li>
-			    </ul>
-		    </div>
-
-		    <div class="card">
-			    <h3>🌍 Regions</h3>
-			    <ul style="padding-left:18px;line-height:1.8;margin:0;">
-				    <li>Global API availability</li>
-				    <li>India, US, Europe, West Asia deployments available</li>
-				    <li>Region-specific PII detection</li>
-			    </ul>
-		    </div>
-	    </div>
-    </section>
-
-    <br/><br/>
-    <section id="integrations">
-	    <h2>Supported Integrations</h2>
-	    <div class="grid">
-		    <div class="card">
-			    <h3>🗄️ Databases</h3>
-			    <p>PostgreSQL, MySQL, MongoDB, SQL Server, Oracle</p>
-		    </div>
-		    <div class="card">
-			    <h3>☁️ Object Store</h3>
-			    <p>Amazon S3, Azure Blob Storage, Google Cloud Storage</p>
-		    </div>
-		    <div class="card">
-			    <h3>⚡ Data Pipelines</h3>
-			    <p>Kafka, RabbitMQ, Snowflake, BigQuery, Redshift</p>
-		    </div>
-	    </div>
-    </section>
-
-    <section id="pii" style="margin-top:40px;">
-    <h2>Supported Identifiers</h2>
-    <p class="lead" style="max-width:700px;">
-        Detect and classify commonly used global identifiers together with
-        India-specific personal and financial identifiers.
-    </p>
-
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
-        <!-- Global -->
-        <div class="card">
-            <h3>🌍 Global Identifiers</h3>
-            <div style="margin-top:12px;">
-                <span class="badge">Email Address</span>
-                <span class="badge">Phone Number</span>
-                <span class="badge">Given Name</span>
-                <span class="badge">Username</span>
-                <span class="badge">Date of Birth</span>
-                <span class="badge">City</span>
-                <span class="badge">ZIP / Postal Code</span>
-                <span class="badge">Passport Number</span>
-                <span class="badge">Social Security Number (SSN)</span>
-            </div>
-        </div>
-
-        <!-- India -->
-        <div class="card">
-            <h3>🇮🇳 India-Specific</h3>
-            <div style="margin-top:12px;">
-                <span class="badge">Aadhaar</span>
-                <span class="badge">PAN</span>
-                <span class="badge">GSTIN</span>
-                <span class="badge">Voter ID</span>
-                <span class="badge">Indian Passport</span>
-                <span class="badge">PIN Code</span>
-            </div>
-        </div>
-
-        <!-- Financial -->
-        <div class="card">
-            <h3>💳 Financial Identifiers</h3>
-            <div style="margin-top:12px;">
-                <span class="badge">Credit Card Number</span>
-                <span class="badge">UPI ID</span>
-                <span class="badge">IFSC Code</span>
-            </div>
-        </div>
-    </div>
-
-    <p style="margin-top:18px;color:#9fb0c7;font-size:14px;">
-        Need additional entity types? Custom identifiers and domain-specific
-        recognizers can be added for enterprise deployments.
-    </p>
-    </section>
-
-    <section class="contact-cta">
-    <h3>Need a Custom Solution?</h3>
-    <p align="left">
-	Managed deployments, custom PII detection or custom integrations?
-    </p>
-
-    <div class="contact-links">
-	Contact us at<a href="mailto:ashishm@pii-cloak.net">ashishm@pii-cloak.net</a>
-    </div>
-    </section>
-  </div>
-
-  <div class="right-col" id='examples'>
-    <h2>API Examples</h2>
-    <div class=card>
-      <div class=toolbar>
-        <select id=lang>
-          <option>JavaScript</option>
-          <option>cURL</option>
-          <option>Python</option>
-          <option>PHP</option>
-          <option>Java</option>
-          <option>Ruby</option>
-        </select>
-        <button onclick='copyCode()'>📋 Copy</button>
       </div>
-      <pre id=code></pre>
-      
-      <div class="response-title">Expected API Response</div>
-      <pre class="response-box" id="response-box"></pre>
-    </div>
-  </div>
-</main>
 
-<footer style="margin-top:60px;padding:40px 6%;background:#111827;border-top:1px solid #334155;color:#cbd5e1;">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;">
+      <div class="hero-visual">
+        <img src="assets/images/logo/PII-Cloak-Logo-high-contrast.png" width="1536" height="1024" decoding="async" fetchpriority="high" alt="PII Cloak detect, redact, and protect visual" class="hero-image">
 
-    <!-- Brand -->
-    <div>
-      <h3 style="margin-top:0;color:#60a5fa;">PII Detector API</h3>
-      <p style="line-height:1.7;color:#94a3b8;">
-        Enterprise-grade REST API for detecting and redacting personally identifiable information across structured and unstructured data.
+        <aside class="hero-panel" aria-label="Detection summary">
+          <div class="panel-header">
+            <span class="status-dot"></span>
+            <span>Detection pipeline</span>
+          </div>
+          <div class="scan-card">
+            <span class="scan-label">Input</span>
+            <p>Application text or sampled rows from PostgreSQL and Oracle databases</p>
+          </div>
+          <div class="scan-flow" aria-hidden="true"></div>
+          <div class="scan-card highlighted">
+            <span class="scan-label">Hybrid detection</span>
+            <p>Regex rules for structured identifiers plus a transformer model for contextual entities</p>
+          </div>
+          <div class="scan-flow" aria-hidden="true"></div>
+          <div class="scan-card">
+            <span class="scan-label">Output</span>
+            <p>Detected entities, redacted text, likely PII columns, and JSON or HTML reports</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="offerings" class="section">
+      <div class="section-heading">
+        <span class="eyebrow">Core capabilities</span>
+        <h2>One service for runtime protection and data discovery.</h2>
+        <p>
+          PII Cloak combines deterministic regex detection for structured identifiers with a
+          transformer-based PII model for entities that depend on language and context.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="card">
+          <h3>Text Detection &amp; Redaction API</h3>
+          <p>Send application text to a REST endpoint and receive detected entities, confidence scores, and redacted text for downstream use.</p>
+        </article>
+        <article class="card">
+          <h3>PostgreSQL &amp; Oracle Scans</h3>
+          <p>Inspect database samples to identify tables and columns likely to contain personal, identity, financial, or credential data.</p>
+        </article>
+        <article class="card">
+          <h3>Actionable Exposure Reports</h3>
+          <p>Generate machine-readable JSON and review-ready HTML reports for engineering, data, architecture, and privacy teams.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="customers" class="section section-muted">
+      <div class="section-heading">
+        <span class="eyebrow">Industries</span>
+        <h2>Built for teams handling sensitive customer data every day.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="card">
+          <h3>Financial Services</h3>
+          <p>Detect sensitive information in transactions, onboarding documents, customer chats, and operational exports.</p>
+        </article>
+        <article class="card">
+          <h3>AI and LLM Applications</h3>
+          <p>Remove personal data before prompts, training samples, or conversation logs reach model providers.</p>
+        </article>
+        <article class="card">
+          <h3>SaaS Platforms</h3>
+          <p>Protect user-generated content, uploaded files, tickets, and application logs across product surfaces.</p>
+        </article>
+        <article class="card">
+          <h3>Legal Services</h3>
+          <p>Detect and redact client, case, contract, and discovery data before documents move through review tools or AI workflows.</p>
+        </article>
+        <article class="card">
+          <h3>HR Services</h3>
+          <p>Protect employee, candidate, payroll, and benefits information across HR platforms, support requests, and internal reports.</p>
+        </article>
+        <article class="card">
+          <h3>Government &amp; Citizen Services</h3>
+          <p>Protect Aadhaar, PAN, voter ID, passport, tax, contact, and address data across applications, records, and citizen service workflows.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="enterprise" class="section">
+      <div class="section-heading">
+        <span class="eyebrow">Private deployment architecture</span>
+        <h2>Run PII detection entirely inside your network.</h2>
+        <p>Deploy the stateless service as a single Docker container within your client VPN or internal network. Requests remain under your infrastructure, access, and security controls.</p>
+      </div>
+
+      <figure class="architecture-figure">
+        <a href="assets/images/architecture/pii-cloak-client-vpn-architecture.jpeg" target="_blank" rel="noopener" aria-label="Open the client VPN deployment architecture diagram at full size">
+          <img src="assets/images/architecture/pii-cloak-client-vpn-architecture.jpeg" width="1536" height="1024" loading="lazy" alt="PII Cloak stateless deployment inside a client VPN, showing API gateway, in-memory processing, PII detection, response generation, and JSON response stages">
+        </a>
+        <figcaption>Reference architecture for a stateless, containerized PII detection service deployed within a client-controlled private network.</figcaption>
+      </figure>
+
+      <div class="feature-grid">
+        <article class="card">
+          <h3>Controlled Network Boundary</h3>
+          <ul class="check-list">
+            <li>Runs inside the client VPN or internal network</li>
+            <li>HTTPS communication using TLS 1.2 or later</li>
+            <li>API key authentication, rate limiting, and request validation</li>
+            <li>Supports web, mobile, backend, SDK, cURL, and Postman clients</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>In-Memory Processing Pipeline</h3>
+          <ul class="check-list">
+            <li>Normalizes and chunks request text in memory</li>
+            <li>Runs structured rules and the PiiPiranha transformer model locally without an internet dependency</li>
+            <li>Returns entity types, confidence scores, and detection summaries</li>
+            <li>Can include redacted text in the JSON response</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Privacy by Design</h3>
+          <ul class="check-list">
+            <li>No database or file storage</li>
+            <li>No request, response, or payload content logs</li>
+            <li>No request caching or usage telemetry</li>
+            <li>Data is discarded immediately after the response</li>
+            <li>The service provider cannot see or access processed data</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="integrations" class="section section-muted">
+      <div class="section-heading">
+        <span class="eyebrow">Database scanning</span>
+        <h2>Locate likely PII columns in production data estates.</h2>
+        <p>Scan representative database samples, classify likely PII exposure, and share findings in formats suited to both automation and technical review.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="card">
+          <h3>PostgreSQL</h3>
+          <p>Scan schemas and sampled column values to identify where personal, identity, address, financial, and account data is likely stored.</p>
+        </article>
+        <article class="card">
+          <h3>Oracle Database</h3>
+          <p>Apply the same PII detection coverage to sampled Oracle data and produce table and column-level findings for remediation planning.</p>
+        </article>
+        <article class="card">
+          <h3>Extensible Connectors</h3>
+          <p>Add connectors for MySQL and other databases using the existing scan and reporting workflow as requirements expand.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pii" class="section">
+      <div class="section-heading">
+        <span class="eyebrow">Coverage</span>
+        <h2>Practical PII coverage across text and databases.</h2>
+        <p>Use structured rules and contextual detection to classify 24 commonly encountered personal, contact, location, identity, financial, credential, and database fields.</p>
+      </div>
+
+      <div class="identifier-grid">
+        <article class="card">
+          <h3>Personal, Contact &amp; Location</h3>
+          <div class="badge-group">
+            <span class="badge">Names</span>
+            <span class="badge">Email Address</span>
+            <span class="badge">Phone Number</span>
+            <span class="badge">Date of Birth</span>
+            <span class="badge">Building Number</span>
+            <span class="badge">Street Address</span>
+            <span class="badge">City</span>
+            <span class="badge">ZIP / Postal Code</span>
+            <span class="badge">Address / Location Fields</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Identity &amp; Tax</h3>
+          <div class="badge-group">
+            <span class="badge">Aadhaar</span>
+            <span class="badge">PAN</span>
+            <span class="badge">GSTIN</span>
+            <span class="badge">Voter ID</span>
+            <span class="badge">Passport Number</span>
+            <span class="badge">Social Security Number</span>
+            <span class="badge">Driver's License</span>
+            <span class="badge">ID Card Number</span>
+            <span class="badge">Tax Number</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Financial, Account &amp; Credentials</h3>
+          <div class="badge-group">
+            <span class="badge">Account Number</span>
+            <span class="badge">Credit Card Number</span>
+            <span class="badge">UPI ID</span>
+            <span class="badge">IFSC Code</span>
+            <span class="badge">Password</span>
+            <span class="badge">Database Username / User ID Columns</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="note">
+        Structured identifiers such as Aadhaar, PAN, GSTIN, IFSC, UPI, passport, voter ID, email, and SSN use regex-based detection. Contextual entities are detected with a transformer-based PII model.
       </p>
+    </section>
+
+    <section id="why-pii-cloak" class="section comparison-section">
+      <div class="section-heading">
+        <span class="eyebrow">Build versus deploy</span>
+        <h2>Why use PII Cloak?</h2>
+        <p>Microsoft Presidio is a capable framework. PII Cloak is for teams that want a maintained, privately deployed PII service without assembling the production stack themselves.</p>
+      </div>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <caption class="sr-only">Technical comparison of Microsoft Presidio and PII Cloak</caption>
+          <thead>
+            <tr>
+              <th scope="col">Decision area</th>
+              <th scope="col">Microsoft Presidio</th>
+              <th scope="col">PII Cloak</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Delivery model</th>
+              <td data-label="Microsoft Presidio">Open-source components your team configures, integrates, hardens, and operates.</td>
+              <td data-label="PII Cloak">Ready-to-run stateless API and container with an opinionated production architecture.</td>
+            </tr>
+            <tr>
+              <th scope="row">Indian PII</th>
+              <td data-label="Microsoft Presidio">Includes several Indian recognizers; additional identifiers require extension and tuning.</td>
+              <td data-label="PII Cloak">Maintained coverage for Aadhaar, PAN, GSTIN, voter ID, passport, IFSC, UPI, and more.</td>
+            </tr>
+            <tr>
+              <th scope="row">Database discovery</th>
+              <td data-label="Microsoft Presidio">Structured-data tooling is available; database extraction, connectors, and reporting remain integration work.</td>
+              <td data-label="PII Cloak">PostgreSQL and Oracle scanning with table and column findings plus JSON and HTML reports.</td>
+            </tr>
+            <tr>
+              <th scope="row">Detection stack</th>
+              <td data-label="Microsoft Presidio">Flexible regex, rules, checksums, and NER components selected and tuned by your team.</td>
+              <td data-label="PII Cloak">Preconfigured regex rules and PiiPiranha transformer inference for structured and contextual PII.</td>
+            </tr>
+            <tr>
+              <th scope="row">Private deployment</th>
+              <td data-label="Microsoft Presidio">Self-hostable; your team defines authentication, network controls, logging, and persistence behavior.</td>
+              <td data-label="PII Cloak">Single-container client VPN deployment with API keys, in-memory processing, and no content storage or logs.</td>
+            </tr>
+            <tr>
+              <th scope="row">Ongoing ownership</th>
+              <td data-label="Microsoft Presidio">Your engineers own recognizers, model configuration, integrations, upgrades, and operations.</td>
+              <td data-label="PII Cloak">Detection rules, models, database connectors, reporting, and service maintenance are handled for you.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="comparison-takeaway"><strong>Choose Presidio</strong> when you want a framework to customize. <strong>Choose PII Cloak</strong> when you want to deploy a working private PII service with database discovery and substantially less integration work.</p>
+    </section>
+
+    <section id="examples" class="section api-section">
+      <div class="section-heading">
+        <span class="eyebrow">API</span>
+        <h2>Start with a simple request.</h2>
+      </div>
+
+      <div class="api-layout">
+        <div class="api-copy">
+          <h3>Integrate detection at runtime</h3>
+          <p>
+            Send raw text to the API and receive detected entities with types, scores, and matched values.
+            Use the redacted output to protect logs, support workflows, application data, and AI inputs.
+          </p>
+          <button class="btn btn-primary" type="button" onclick="openDemo()">Open Interactive Demo</button>
+        </div>
+
+        <div class="code-card">
+          <div class="toolbar">
+            <label for="lang">Example</label>
+            <select id="lang">
+              <option>JavaScript</option>
+              <option>cURL</option>
+              <option>Python</option>
+              <option>PHP</option>
+              <option>Java</option>
+              <option>Ruby</option>
+            </select>
+            <button id="copy-code-button" type="button" onclick="copyCode()">Copy</button>
+            <span id="copy-status" class="sr-only" aria-live="polite"></span>
+          </div>
+          <pre id="code"></pre>
+
+          <div class="response-title">Expected API Response</div>
+          <pre class="response-box" id="response-box"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-cta" aria-label="Contact sales">
+      <div>
+        <span class="eyebrow">Technical evaluation</span>
+        <h2>Need to map PII in PostgreSQL or Oracle, or protect application text?</h2>
+      </div>
+      <a class="btn btn-primary" href="mailto:enquiry@pii-cloak.net?subject=PII%20Detector%20Enterprise%20Inquiry">Contact Us</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <h3>PII Cloak</h3>
+      <p>PII detection and redaction API with PostgreSQL and Oracle database scanning.</p>
     </div>
 
-    <!-- Product -->
-    <div>
-      <h4 style="margin-top:0;color:#fff;">Product</h4>
+    <nav aria-label="Footer navigation">
+      <a href="#offerings">Offerings</a>
+      <a href="#customers">Industries</a>
+      <a href="#enterprise">Architecture</a>
+      <a href="#integrations">Database Scans</a>
+      <a href="#examples">API Examples</a>
+    </nav>
 
-      <ul>
-      <li><a href="#offerings">Offerings</a></li>
-      <li><a href="#customers">Industries</a></li>
-      <li><a href="#enterprise">Enterprise Deployment</a></li>
-      <li><a href="#integrations">Integrations</a></li>
-      <li><a href="#examples">API Examples</a></li> 
-      </ul>
+    <div class="footer-bottom">
+      <span>Copyright 2026 PII-Cloak.net. All rights reserved.</span>
+      <span>Text detection and redaction. Database discovery. JSON and HTML reporting.</span>
     </div>
+  </footer>
 
-    <!-- Enterprise -->
-    <div>
-      <h4 style="margin-top:0;color:#fff;">Enterprise</h4>
-      <p>✔ Private Deployment</p>
-      <p>✔ Cloud API</p>
-      <p>✔ On-Premise Support</p>
-      <p>✔ Custom Integrations</p>
-    </div>
+  <div class="modal-overlay" id="demoModal" onclick="closeDemoOnOverlay(event)">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="demo-title">
+      <button class="close-modal" type="button" onclick="closeDemo()" aria-label="Close demo">Close</button>
+      <h3 id="demo-title">Interactive API Demo</h3>
+      <p class="lead">Enter raw text containing sensitive PII strings to evaluate response data.</p>
+      <textarea class="demo-textarea" id="demoInput" placeholder="Type or paste sample text here..."></textarea>
+      <button class="btn btn-primary" type="button" id="submitDemoBtn" onclick="runLiveDemo()">Analyze Text</button>
 
-    <!-- Contact -->
-    <div>
-      <a href="mailto:ashishm@pii-cloak.net?subject=PII%20Detector%20Enterprise%20Inquiry"
-         class="contact-btn"
-         style="margin-top:8px;display:inline-block;">
-         Contact Sales
-      </a>
+      <div id="demoResponseArea" class="demo-response-area">
+        <div class="response-title">Live API Response</div>
+        <pre class="response-box demo-response" id="demoResponseBox"></pre>
+      </div>
     </div>
   </div>
 
-  <hr style="border:none;border-top:1px solid #334155;margin:30px 0;">
-
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;color:#94a3b8;font-size:14px;">
-    <div>
-      © 2026 PII-Cloak.net. All rights reserved.
-    </div>
-
-    <div>
-      Stateless Processing • HTTPS Encryption • Private Deployments Available
-    </div>
-  </div>
-</footer>
-
-<div class="modal-overlay" id="demoModal" onclick="closeDemoOnOverlay(event)">
-  <div class="modal-content">
-    <button class="close-modal" onclick="closeDemo()">✕</button>
-    <h3 style="margin-top: 0; color: #60a5fa;">Interactive API Demo</h3>
-    <p class="lead" style="font-size: 14px; margin-bottom: 5px;">Enter raw text containing sensitive PII strings to evaluate response data:</p>
-    <textarea class="demo-textarea" id="demoInput" placeholder="Type or paste sample text here..."></textarea>
-    <button class="btn" style="margin: 0;" id="submitDemoBtn" onclick="runLiveDemo()">Analyze Text</button>
-    
-    <div id="demoResponseArea" style="display: none;">
-      <div class="response-title" style="color: #60a5fa;">Live API Response</div>
-      <pre class="response-box demo-response" id="demoResponseBox"></pre>
-    </div>
-  </div>
-</div>
-
-<script>
-const sampleResponse = [
-  {"word": "ashish@ybl", "entity_group": "UPI"}, 
-  {"entity_group": "GIVENNAME", "score": "0.9939406", "word": "Ashish"}, 
-  {"entity_group": "TELEPHONENUM", "score": "0.9999077", "word": "+91-8800199037"}
-];
-
-const ex={
-"JavaScript":`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>PII Detector API Example</title>
-</head>
-<body>
-    <h1>API Test Output</h1>
-    <div id="output">Processing request...</div>
-
-    <script>
-        async function verifyPIIData(textContent) {
-            const url = "https://ashish-m-pii-detector.hf.space/pii-check";
-            const outputDiv = document.getElementById("output");
-            
-            try {
-                const response = await fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: JSON.stringify({ text: textContent })
-                });
-
-                if (!response.ok) {
-                    throw new Error(\`HTTP error! status: \${response.status}\`);
-                }
-
-                const data = await response.json();
-                outputDiv.style.color = "#a7f3d0";
-                outputDiv.textContent = JSON.stringify(data, null, 2);
-                console.log("Redaction Data:", data);
-            } catch (error) {
-                outputDiv.style.color = "#f87171";
-                outputDiv.textContent = "Error running PII check: " + error.message;
-                console.error("Failed to run PII check:", error);
-            }
-        }
-
-        // Run automatically when the page loads
-        window.addEventListener("DOMContentLoaded", () => {
-            const rawText = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl";
-            verifyPIIData(rawText);
-        });
-    <\/script>
-</body>
-</html>`,
-
-"cURL":`curl --request POST \\
-  --url https://ashish-m-pii-detector.hf.space/pii-check \\
-  --header 'Content-Type: application/json' \\
-  --header 'Accept: application/json' \\
-  --data '{
-    "text": "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl"
-  }'`,
-
-"Python":`import requests
-import json
-import sys
-
-def check_pii(text_content):
-    url = "https://ashish-m-pii-detector.hf.space/pii-check"
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-    }
-    payload = {
-        "text": text_content
-    }
-
-    try:
-        response = requests.post(url, headers=headers, json=payload)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"API Request Failed: {e}", file=sys.stderr)
-        return None
-
-if __name__ == "__main__":
-    sample_text = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl"
-    result = check_pii(sample_text)
-    if result:
-        print(json.dumps(result, indent=4))`,
-
-"PHP":`<?php
-
-function scanPII($text) {
-    $url = 'https://ashish-m-pii-detector.hf.space/pii-check';
-    
-    $payload = json_encode([
-        'text' => $text
-    ]);
-
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json',
-        'Accept: application/json',
-        'Content-Length: ' . strlen($payload)
-    ]);
-
-    $response = curl_exec($ch);
-    
-    if (curl_errno($ch)) {
-        $error_msg = curl_error($ch);
-        curl_close($ch);
-        throw new Exception("Curl error: " . $error_msg);
-    }
-
-    curl_close($ch);
-    return json_decode($response, true);
-}
-
-try {
-    $sampleText = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl";
-    $result = scanPII($sampleText);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Error: ' . $e->getMessage();
-}`,
-
-"Java":`import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class PiiDetectorClient {
-
-    public static void main(String[] args) {
-        HttpClient client = HttpClient.newHttpClient();
-        
-        String jsonPayload = "{\\"text\\":\\"my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl\\"}";
-        
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://ashish-m-pii-detector.hf.space/pii-check"))
-                .header("Content-Type", "application/json")
-                .header("Accept", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
-                .build();
-
-        try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            
-            if (response.statusCode() >= 200 && response.statusCode() < 300) {
-                System.out.println("Status Code: " + response.statusCode());
-                System.out.println("Response Body:\\n" + response.body());
-            } else {
-                System.err.println("Server returned error status: " + response.statusCode());
-            }
-        } catch (IOException | InterruptedException e) {
-            System.err.println("Exception occurred while sending request: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-}`,
-
-"Ruby":`require 'net/http'
-require 'uri'
-require 'json'
-
-def check_pii_content(text_to_scan)
-  uri = URI.parse("https://ashish-m-pii-detector.hf.space/pii-check")
-  
-  header = {
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json'
-  }
-  
-  payload = {
-    text: text_to_scan
-  }
-
-  http = Net::HTTP.new(uri.host, uri.port)
-  http.use_ssl = true if uri.scheme == 'https'
-
-  request = Net::HTTP::Post.new(uri.request_uri, header)
-  request.body = payload.to_json
-
-  begin
-    response = http.request(request)
-    if response.code.to_i == 200
-      puts "Success:"
-      puts JSON.pretty_generate(JSON.parse(response.body))
-    else
-      puts "Server Error: #{response.code} - #{response.message}"
-    end
-  rescue StandardError => e
-    puts "An error occurred: #{e.message}"
-  end
-end
-
-sample_input = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl"
-check_pii_content(sample_input)`
-};
-
-let s=document.getElementById('lang'),
-    c=document.getElementById('code'),
-    r=document.getElementById('response-box');
-
-function u(){
-  c.textContent=ex[s.value];
-  r.textContent=JSON.stringify(sampleResponse, null, 2);
-}
-
-s.onchange=u;
-u();
-
-function copyCode(){
-  navigator.clipboard.writeText(c.textContent);
-}
-
-/* Demo Modal Operations */
-function openDemo() {
-  document.getElementById('demoModal').style.display = 'flex';
-  document.getElementById('demoInput').value = "my name is Ashish and reach me at +91-8800199037 and pay at ashish@ybl";
-  document.getElementById('demoResponseArea').style.display = 'none';
-}
-
-function closeDemo() {
-  document.getElementById('demoModal').style.display = 'none';
-}
-
-function closeDemoOnOverlay(e) {
-  if (e.target.id === 'demoModal') { closeDemo(); }
-}
-
-/* Mobile and tablet navigation */
-const menuToggle = document.querySelector('.menu-toggle');
-const menuClose = document.querySelector('.menu-close');
-const primaryNavigation = document.getElementById('primary-navigation');
-
-function openMenu() {
-  primaryNavigation.classList.add('is-open');
-  document.body.classList.add('menu-open');
-  menuToggle.setAttribute('aria-expanded', 'true');
-  menuClose.focus();
-}
-
-function closeMenu() {
-  primaryNavigation.classList.remove('is-open');
-  document.body.classList.remove('menu-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.focus();
-}
-
-menuToggle.addEventListener('click', openMenu);
-menuClose.addEventListener('click', closeMenu);
-primaryNavigation.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && primaryNavigation.classList.contains('is-open')) {
-    closeMenu();
-  }
-});
-
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 1024 && primaryNavigation.classList.contains('is-open')) {
-    primaryNavigation.classList.remove('is-open');
-    document.body.classList.remove('menu-open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-  }
-});
-
-async function runLiveDemo() {
-  const inputText = document.getElementById('demoInput').value;
-  const responseArea = document.getElementById('demoResponseArea');
-  const responseBox = document.getElementById('demoResponseBox');
-  const submitBtn = document.getElementById('submitDemoBtn');
-
-  if (!inputText.trim()) {
-    alert("Please enter some text to check.");
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Analyzing...";
-  responseArea.style.display = 'block';
-  responseBox.style.color = '#94a3b8';
-  responseBox.style.borderColor = '#334155';
-  responseBox.textContent = "Connecting to API endpoint...";
-
-  try {
-    const response = await fetch("https://ashish-m-pii-detector.hf.space/pii-check", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({ text: inputText })
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    responseBox.style.color = '#34d399';
-    responseBox.style.borderColor = '#10b981';
-    responseBox.textContent = JSON.stringify(data, null, 2);
-  } catch (error) {
-    responseBox.style.color = '#f87171';
-    responseBox.style.borderColor = '#ef4444';
-    responseBox.textContent = "Error making API call:\n" + error.message;
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Analyze Text";
-  }
-}
-</script>
+  <script defer src="assets/js/main.js"></script>
 </body>
 </html>
