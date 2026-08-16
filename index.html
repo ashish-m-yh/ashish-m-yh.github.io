@@ -118,7 +118,7 @@
 
         <div class="metrics" aria-label="Trust metrics">
           <div class="metric">
-            <strong>24</strong>
+            <strong>22</strong>
             <span>Supported PII fields</span>
           </div>
           <div class="metric">
@@ -182,6 +182,60 @@
           <p>Generate machine-readable JSON and review-ready HTML reports for engineering, data, architecture, and privacy teams.</p>
         </article>
       </div>
+    </section>
+
+    <section id="pii" class="section">
+      <div class="section-heading">
+        <span class="eyebrow">Coverage</span>
+        <h2>Practical PII coverage across text and databases.</h2>
+        <p>Use structured rules and contextual detection to classify 22 commonly encountered personal, contact, location, identity, financial, credential, and database fields.</p>
+      </div>
+
+      <div class="identifier-grid">
+        <article class="card">
+          <h3>Personal, Contact &amp; Location</h3>
+          <div class="badge-group">
+            <span class="badge">Names</span>
+            <span class="badge">Email Address</span>
+            <span class="badge">Phone Number</span>
+            <span class="badge">Date of Birth</span>
+            <span class="badge">Building Number</span>
+            <span class="badge">Street Address</span>
+            <span class="badge">City</span>
+            <span class="badge">ZIP / Postal Code</span>
+            <span class="badge">Address / Location Fields</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Identity &amp; Tax</h3>
+          <div class="badge-group">
+            <span class="badge">Aadhaar</span>
+            <span class="badge">PAN</span>
+            <span class="badge">GSTIN</span>
+            <span class="badge">Voter ID</span>
+            <span class="badge">Passport Number</span>
+            <span class="badge">Social Security Number</span>
+            <span class="badge">ID Card Number</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Financial, Account &amp; Credentials</h3>
+          <div class="badge-group">
+            <span class="badge">Account Number</span>
+            <span class="badge">Credit Card Number</span>
+            <span class="badge">UPI ID</span>
+            <span class="badge">IFSC Code</span>
+            <span class="badge">Password</span>
+            <span class="badge">Database Username / User ID Columns</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="note">
+        Structured identifiers such as Aadhaar, PAN, GSTIN, IFSC, UPI, passport, voter ID, email, and SSN use regex-based detection. Contextual entities are detected with a transformer-based PII model.
+      </p>
     </section>
 
     <section id="customers" class="section section-muted">
@@ -287,62 +341,6 @@
       </div>
     </section>
 
-    <section id="pii" class="section">
-      <div class="section-heading">
-        <span class="eyebrow">Coverage</span>
-        <h2>Practical PII coverage across text and databases.</h2>
-        <p>Use structured rules and contextual detection to classify 24 commonly encountered personal, contact, location, identity, financial, credential, and database fields.</p>
-      </div>
-
-      <div class="identifier-grid">
-        <article class="card">
-          <h3>Personal, Contact &amp; Location</h3>
-          <div class="badge-group">
-            <span class="badge">Names</span>
-            <span class="badge">Email Address</span>
-            <span class="badge">Phone Number</span>
-            <span class="badge">Date of Birth</span>
-            <span class="badge">Building Number</span>
-            <span class="badge">Street Address</span>
-            <span class="badge">City</span>
-            <span class="badge">ZIP / Postal Code</span>
-            <span class="badge">Address / Location Fields</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Identity &amp; Tax</h3>
-          <div class="badge-group">
-            <span class="badge">Aadhaar</span>
-            <span class="badge">PAN</span>
-            <span class="badge">GSTIN</span>
-            <span class="badge">Voter ID</span>
-            <span class="badge">Passport Number</span>
-            <span class="badge">Social Security Number</span>
-            <span class="badge">Driver's License</span>
-            <span class="badge">ID Card Number</span>
-            <span class="badge">Tax Number</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Financial, Account &amp; Credentials</h3>
-          <div class="badge-group">
-            <span class="badge">Account Number</span>
-            <span class="badge">Credit Card Number</span>
-            <span class="badge">UPI ID</span>
-            <span class="badge">IFSC Code</span>
-            <span class="badge">Password</span>
-            <span class="badge">Database Username / User ID Columns</span>
-          </div>
-        </article>
-      </div>
-
-      <p class="note">
-        Structured identifiers such as Aadhaar, PAN, GSTIN, IFSC, UPI, passport, voter ID, email, and SSN use regex-based detection. Contextual entities are detected with a transformer-based PII model.
-      </p>
-    </section>
-
     <section id="why-pii-cloak" class="section comparison-section">
       <div class="section-heading">
         <span class="eyebrow">Build versus deploy</span>
@@ -385,6 +383,11 @@
               <th scope="row">Private deployment</th>
               <td data-label="Microsoft Presidio">Self-hostable; your team defines authentication, network controls, logging, and persistence behavior.</td>
               <td data-label="PII Cloak">Single-container client VPN deployment with API keys, in-memory processing, and no content storage or logs.</td>
+            </tr>
+            <tr>
+              <th scope="row">Cost of ownership</th>
+              <td data-label="Microsoft Presidio"><strong>5X more</strong> when engineering time, infrastructure, tuning, upgrades, and support are included.</td>
+              <td data-label="PII Cloak">Lower and more predictable, with the production stack and ongoing maintenance included.</td>
             </tr>
             <tr>
               <th scope="row">Ongoing ownership</th>
