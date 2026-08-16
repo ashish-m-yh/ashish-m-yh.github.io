@@ -345,60 +345,68 @@
       <div class="section-heading">
         <span class="eyebrow">Build versus deploy</span>
         <h2>Why use PII Cloak?</h2>
-        <p>Microsoft Presidio is a capable framework. PII Cloak is for teams that want a maintained, privately deployed PII service without assembling the production stack themselves.</p>
+        <p>Open-source frameworks provide building blocks. Cloud APIs provide managed endpoints. Compliance platforms provide dashboards. PII Cloak provides a working detection, redaction, and database discovery service ready to deploy.</p>
       </div>
 
       <div class="comparison-table-wrap">
         <table class="comparison-table">
-          <caption class="sr-only">Technical comparison of Microsoft Presidio and PII Cloak</caption>
+          <caption class="sr-only">Technical comparison of open-source frameworks, generic cloud APIs, and PII Cloak</caption>
           <thead>
             <tr>
               <th scope="col">Decision area</th>
-              <th scope="col">Microsoft Presidio</th>
+              <th scope="col">Open-source frameworks</th>
+              <th scope="col">Generic cloud APIs</th>
               <th scope="col">PII Cloak</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Delivery model</th>
-              <td data-label="Microsoft Presidio">Open-source components your team configures, integrates, hardens, and operates.</td>
-              <td data-label="PII Cloak">Ready-to-run stateless API and container with an opinionated production architecture.</td>
+              <th scope="row">Time to first result</th>
+              <td data-label="Open-source frameworks">Days of setup, configuration, and integration.</td>
+              <td data-label="Generic cloud APIs">Hours of account, security, and SDK setup.</td>
+              <td data-label="PII Cloak">Minutes to pull, run, and call the API.</td>
             </tr>
             <tr>
-              <th scope="row">Indian PII</th>
-              <td data-label="Microsoft Presidio">Includes several Indian recognizers; additional identifiers require extension and tuning.</td>
-              <td data-label="PII Cloak">Maintained coverage for Aadhaar, PAN, GSTIN, voter ID, passport, IFSC, UPI, and more.</td>
+              <th scope="row">Indian identifiers</th>
+              <td data-label="Open-source frameworks">Custom recognizers and production tuning may be required.</td>
+              <td data-label="Generic cloud APIs">Coverage varies by provider, service, and region.</td>
+              <td data-label="PII Cloak">Aadhaar, PAN, GSTIN, IFSC, UPI, voter ID, and passport coverage is built in.</td>
             </tr>
             <tr>
-              <th scope="row">Database discovery</th>
-              <td data-label="Microsoft Presidio">Structured-data tooling is available; database extraction, connectors, and reporting remain integration work.</td>
+              <th scope="row">Database scanning</th>
+              <td data-label="Open-source frameworks">Extraction, database connectors, and reports are separate engineering work.</td>
+              <td data-label="Generic cloud APIs">Discovery is typically tied to the provider's own data services.</td>
               <td data-label="PII Cloak">PostgreSQL and Oracle scanning with table and column findings plus JSON and HTML reports.</td>
             </tr>
             <tr>
-              <th scope="row">Detection stack</th>
-              <td data-label="Microsoft Presidio">Flexible regex, rules, checksums, and NER components selected and tuned by your team.</td>
-              <td data-label="PII Cloak">Preconfigured regex rules and PiiPiranha transformer inference for structured and contextual PII.</td>
+              <th scope="row">Detection approach</th>
+              <td data-label="Open-source frameworks">Your team selects, combines, and tunes rules and models.</td>
+              <td data-label="Generic cloud APIs">Provider-managed detection with limited model control.</td>
+              <td data-label="PII Cloak">Hybrid regex and transformer detection tuned for Indian and global PII.</td>
             </tr>
             <tr>
-              <th scope="row">Private deployment</th>
-              <td data-label="Microsoft Presidio">Self-hostable; your team defines authentication, network controls, logging, and persistence behavior.</td>
-              <td data-label="PII Cloak">Single-container client VPN deployment with API keys, in-memory processing, and no content storage or logs.</td>
+              <th scope="row">Data residency</th>
+              <td data-label="Open-source frameworks">Can stay in your infrastructure; your team owns hardening and controls.</td>
+              <td data-label="Generic cloud APIs">Data is sent to a provider endpoint under its regional controls.</td>
+              <td data-label="PII Cloak">Runs inside your network with in-memory processing and no content storage or logs.</td>
             </tr>
             <tr>
-              <th scope="row">Cost of ownership</th>
-              <td data-label="Microsoft Presidio"><strong>5X more</strong> when engineering time, infrastructure, tuning, upgrades, and support are included.</td>
-              <td data-label="PII Cloak">Lower and more predictable, with the production stack and ongoing maintenance included.</td>
+              <th scope="row">Ongoing maintenance</th>
+              <td data-label="Open-source frameworks"><strong>5X more</strong> in total ownership cost when engineering, infrastructure, tuning, and upgrades are included.</td>
+              <td data-label="Generic cloud APIs">The provider maintains detection; your team owns integrations and vendor lifecycle.</td>
+              <td data-label="PII Cloak">Detection rules, models, connectors, reports, and service maintenance are handled for you.</td>
             </tr>
             <tr>
-              <th scope="row">Ongoing ownership</th>
-              <td data-label="Microsoft Presidio">Your engineers own recognizers, model configuration, integrations, upgrades, and operations.</td>
-              <td data-label="PII Cloak">Detection rules, models, database connectors, reporting, and service maintenance are handled for you.</td>
+              <th scope="row">Production effort</th>
+              <td data-label="Open-source frameworks">Multiple team-weeks to assemble and productionize.</td>
+              <td data-label="Generic cloud APIs">Multiple integration cycles across security and data services.</td>
+              <td data-label="PII Cloak">A pre-integrated service that most teams can deploy the same day.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="comparison-takeaway"><strong>Choose Presidio</strong> when you want a framework to customize. <strong>Choose PII Cloak</strong> when you want to deploy a working private PII service with database discovery and substantially less integration work.</p>
+      <p class="comparison-takeaway"><strong>The takeaway:</strong> PII Cloak packages the detection stack, private deployment controls, database connectors, and reporting that teams otherwise assemble themselves, creating a 5-10X faster path to production.</p>
     </section>
 
     <section id="examples" class="section api-section">
