@@ -64,6 +64,7 @@
           },
           "featureList": [
             "PII detection and redaction API",
+            "String scanning for logs, code repositories, documents, and backups",
             "PostgreSQL database scanning",
             "Oracle database scanning",
             "JSON and HTML exposure reports",
@@ -107,8 +108,8 @@
         <div class="eyebrow">PII detection, redaction, and database discovery</div>
         <h1>Find and redact PII across text and databases.</h1>
         <p class="lead">
-          Detect and redact personal data through a REST API, then scan PostgreSQL or Oracle databases
-          to identify columns likely to contain PII and generate actionable JSON and HTML reports.
+          Submit text from logs, code repositories, documents, and backups through the REST API, or scan
+          PostgreSQL and Oracle databases to locate PII and generate actionable JSON and HTML reports.
         </p>
 
         <div class="hero-actions" aria-label="Primary actions">
@@ -142,7 +143,7 @@
           </div>
           <div class="scan-card">
             <span class="scan-label">Input</span>
-            <p>Application text or sampled rows from PostgreSQL and Oracle databases</p>
+            <p>Strings from logs, code repositories, documents, backups, or sampled database rows</p>
           </div>
           <div class="scan-flow" aria-hidden="true"></div>
           <div class="scan-card highlighted">
@@ -171,7 +172,7 @@
       <div class="feature-grid">
         <article class="card">
           <h3>Text Detection &amp; Redaction API</h3>
-          <p>Send application text to a REST endpoint and receive detected entities, confidence scores, and redacted text for downstream use.</p>
+          <p>Send strings from application and data sources to receive detected entities, confidence scores, and redacted text for downstream use.</p>
         </article>
         <article class="card">
           <h3>PostgreSQL &amp; Oracle Scans</h3>
@@ -181,6 +182,35 @@
           <h3>Actionable Exposure Reports</h3>
           <p>Generate machine-readable JSON and review-ready HTML reports for engineering, data, architecture, and privacy teams.</p>
         </article>
+      </div>
+
+      <div class="source-coverage" aria-labelledby="source-coverage-title">
+        <div class="source-coverage-heading">
+          <h3 id="source-coverage-title">Data sources supported</h3>
+          <p>Submit extracted text as strings or use the PostgreSQL and Oracle database scanners.</p>
+        </div>
+        <ul class="source-list">
+          <li>
+            <strong>Logs</strong>
+            <span>Application, service, and audit log text</span>
+          </li>
+          <li>
+            <strong>Code repositories</strong>
+            <span>Source, configuration, and embedded text</span>
+          </li>
+          <li>
+            <strong>Databases</strong>
+            <span>PostgreSQL and Oracle sampled columns</span>
+          </li>
+          <li>
+            <strong>Documents</strong>
+            <span>Extracted document content submitted as text</span>
+          </li>
+          <li>
+            <strong>Backups</strong>
+            <span>Exported or restored content submitted for scanning</span>
+          </li>
+        </ul>
       </div>
     </section>
 
